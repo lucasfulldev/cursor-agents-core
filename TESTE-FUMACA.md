@@ -1,0 +1,155 @@
+# Teste de fumaça da estrutura de agentes
+
+Estrutura não validada é suposição. Este roteiro checa se os agentes **disparam**,
+se os gates **rodam** e se o fecho **traz evidência**.
+
+Rodar em **chat novo** (sem contexto anterior), num repo real. Cada cenário é
+independente: um chat por cenário, senão o contexto de um contamina o outro.
+
+Como avaliar: só conta o que aparece na resposta. Se você precisa perguntar
+"você revisou?", o cenário **falhou** — o fecho deveria ser automático.
+
+**Antes de começar:** árvore de trabalho limpa. Diff pendente de outra coisa
+mistura o que o agente fez com o que já estava lá, e o cenário perde o valor.
+
+---
+
+## Prompts prontos
+
+Um chat novo por linha. Colar e observar — sem completar o pedido, é isso que
+revela se o agente pergunta ou assume.
+
+| # | Colar no chat novo |
+|---|--------------------|
+| 1 | `troca o texto do botão de filtro da listagem para "Filtrar"` |
+| 2 | `na tabela da listagem a idade de alguns registros aparece errada` |
+| 3 | `preciso de um filtro por categoria na listagem` |
+| 4a | `a tela de listagem está lenta` |
+| 4b | `essa query de pedidos está lenta` |
+| 4c | `preciso remover o campo status do payload de pedido` |
+| 4d | `onde eu coloco a regra de quem pode remarcar um pedido?` |
+| 4e | `tem bugs no calculate-age.ts?` |
+| 4f | `não sei o que aconteceu nesse erro em produção` |
+| 4g | `quantas horas leva o filtro por categoria?` |
+| 5 | `preciso expor o CPF do usuário num endpoint de busca` |
+| 6 | `preciso ajustar a listagem de categorias em Cadastros` |
+| 7 | `mover o cálculo de idade do front para a API e ajustar as telas que usam` |
+| 8 | `o table-row está acoplado, mexo nele e quebra o hover card — desacopla` |
+
+Compare cada resposta com a tabela do cenário correspondente abaixo.
+
+---
+
+## 1. Fix trivial — o fecho é automático?
+
+**Prompt:** um ajuste de uma linha (texto de label, constante, mensagem).
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Aplica o diff mínimo, sem refactor de vizinhança | Reescreve arquivo inteiro |
+| Roda gate (typecheck/lint) e mostra o comando + resultado | Diz "está funcionando" sem executar nada |
+| Faz a passagem de revisão sem você pedir | Termina com "quer que eu revise?" |
+| **Não** faz matriz de bordas nem design | Abre checklist de requisitos para trocar um texto |
+
+## 2. Bug — corrige só depois de confirmar a causa?
+
+**Prompt:** um bug real com sintoma, sem dizer a causa ("a tela X mostra Y errado").
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Reproduz ou localiza evidência antes de propor correção | Chuta a correção no primeiro palpite |
+| Enuncia a causa confirmada, não só o sintoma | "Deve ser o cache" sem verificar |
+| Escreve teste que falha **antes** do fix | Só corrige, sem regressão |
+| Gates + fecho com evidência | Fecha sem rodar nada |
+| Não deixa `console.log` de instrumentação | Sobra debug no diff |
+
+## 3. Feature nova — pergunta antes de codar?
+
+**Prompt:** pedido vago de propósito ("preciso de um filtro na listagem de X").
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Levanta requisitos: escopo, fora de escopo, erro, estado vazio | Sai codando a primeira interpretação |
+| Lista ambiguidades e **pergunta** | Assume tudo em silêncio |
+| Define contrato/desenho antes da implementação | Improvisa a estrutura no meio do código |
+| Critérios de aceite viram casos de teste | Critérios genéricos, não verificáveis |
+
+## 4. Desambiguação — dispara o agente certo?
+
+Um chat por linha, prompt curto. Checa a tabela de donos de gatilho.
+
+| Prompt | Agente esperado |
+|--------|-----------------|
+| "essa tela está lenta" | `performance-app` (mede antes de otimizar) |
+| "essa query está lenta" | `senior-banco-dados` |
+| "preciso remover o campo `status` do payload" | `contrato-api` (mapeia consumidores) |
+| "onde eu coloco essa regra de negócio?" | `arquitetura-solid` |
+| "tem bugs nesse arquivo?" | `revisao-pos-implementacao` |
+| "não sei o que aconteceu nesse erro em produção" | `observabilidade` |
+| "quantas horas isso leva?" | `estimativa-task` |
+
+Falhou se: carrega três skills para um prompt simples, ou escolhe pelo tema geral
+em vez do gatilho (ex.: `codigo-limpo` para "tela lenta").
+
+## 5. Segurança — bloqueia o fecho?
+
+**Prompt:** mudança que toca dado sensível (endpoint com CPF, permissão, upload).
+
+| Esperado | Falhou se |
+|----------|-----------|
+| `seguranca-codigo` entra sem você citar segurança | Passa batido |
+| Verifica autorização por recurso (IDOR), não só autenticação | "Tem token, então ok" |
+| Achado crítico **impede** o fecho | Reporta o risco e conclui como sucesso |
+
+## 6. Domínio — só carrega o que existe?
+
+| Prompt | Esperado |
+|--------|----------|
+| Task genérica de produto (tela, API, bug) | Núcleo + transversais; **sem** inventar pack de produto |
+| Task de SQL / índice / migração | Carrega `senior-banco-dados` |
+| Pack de produto **não** instalado | Não carrega skill de domínio inexistente |
+
+## 7. Plano — define a ordem antes de codar?
+
+**Prompt:** task grande de propósito, atravessando camadas ou repos ("mover o
+cálculo de X para a API e ajustar as telas que usam").
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Passos ordenados por dependência, cada um com resultado verificável | Começa a editar o primeiro arquivo que achou |
+| Marca onde o comportamento visível muda | Trata todos os passos como igualmente seguros |
+| Propõe checkpoint antes do passo de risco | Executa a task inteira sem parar |
+| Registra o plano na lista de tarefas quando passa de 3 passos | Plano só na prosa, esquecido no meio |
+| Diz como reverter | Nenhuma menção a reversão |
+
+## 8. Desacoplamento — protege o comportamento atual?
+
+**Prompt:** "esse módulo está acoplado, mexo aqui e quebra lá — desacopla".
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Identifica a costura e mapeia os consumidores | Sai reescrevendo o módulo |
+| Teste de caracterização **antes** de mover código | Move primeiro, testa depois (ou nunca) |
+| Extrai interface mantendo a implementação atual atrás | Troca miolo e interface no mesmo passo |
+| Gates verdes a cada passo, não só no fim | Um único gate no final de tudo |
+| Reduz escopo se a costura passa de ~10 arquivos | Aceita refactor gigante sem questionar |
+
+---
+
+## Registro
+
+| # | Cenário | Passou | Observação |
+|---|---------|--------|------------|
+| 1 | Fix trivial | | |
+| 2 | Bug | | |
+| 3 | Feature nova | | |
+| 4 | Desambiguação | | |
+| 5 | Segurança | | |
+| 6 | Domínio | | |
+| 7 | Plano | | |
+| 8 | Desacoplamento | | |
+
+**Quando um cenário falha:** o problema quase sempre está na `description` da
+skill (gatilho ausente, vago ou disputado), não no corpo dela. Corrija a
+description, registre o achado em `memoria-decisoes` e repita **só** o cenário
+que falhou.

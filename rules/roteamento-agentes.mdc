@@ -1,0 +1,52 @@
+---
+description: Núcleo de agentes (design, testes, qualidade, gates, revisão) e transversais.
+alwaysApply: true
+---
+
+# Roteamento de agentes
+
+Seguir `orquestracao-agentes`: núcleo + transversais por risco + domínio se casar.
+
+## Núcleo (ao mexer em código)
+
+| Estágio | Skill |
+|---------|-------|
+| Requisitos (feature nova, escopo vago) | seção em `orquestracao-agentes` |
+| Plano (3+ passos, 2+ repos, entrega em fases) | estágio 0.6 em `orquestracao-agentes` |
+| Design (módulo/contrato novo) | `arquitetura-solid` |
+| Bordas e testes | `testes-e-bordas` |
+| Implementação | `codigo-limpo` |
+| Verificação executável | `gates-verificacao` |
+| Fecho | `revisao-pos-implementacao` |
+
+Bug → começar por `depuracao-evidencia`. Fix trivial pula design e bordas;
+gates e fecho continuam obrigatórios.
+
+Desacoplar código existente → `arquitetura-solid`, seção de legado (costura +
+teste de caracterização antes de mover). Ordem sempre: preparação sem mudança de
+comportamento → comportamento → limpeza. Checkpoint com o usuário antes de
+migração de dados, contrato já consumido, remoção de código.
+
+Não pedir ao usuário para “revisar”. Não afirmar que funciona sem rodar o gate.
+Não adicionar comentários no código novo; se o trecho precisa de explicação,
+renomear ou extrair.
+
+## Transversais (por gatilho)
+
+- Authz, login, upload, PII/CPF, segredo → `seguranca-codigo` (crítico bloqueia o fecho)
+- Payload/DTO/enum cruzando serviço ou front↔API → `contrato-api`
+- Decisão com trade-off ou achado repetido → `memoria-decisoes`
+- Commit, PR, split → `git-pr`
+
+## Sob demanda
+
+- Lento, N+1, bundle, re-render → `performance-app`
+- Log, erro em produção, correlação → `observabilidade`
+- Horas, sizing → `estimativa-task`
+
+## Domínios
+
+- SQL, índice, plano, migração → `senior-banco-dados`
+- Pack de produto → só se o time tiver instalado a skill do domínio
+
+Novo domínio = nova skill + linha no mapa `orquestracao-agentes` (núcleo intacto).
