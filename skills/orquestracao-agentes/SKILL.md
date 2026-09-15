@@ -227,6 +227,7 @@ reivindicarem o mesmo gatilho, a escolha vira sorteio.
 | log, correlação, alerta | `observabilidade` | PII em log é `seguranca-codigo` |
 | lento, N+1, timeout | `performance-app` | Query lenta em banco é `senior-banco-dados` |
 | Figma, layout, espaçamento, alinhamento, “não está igual ao Figma”, tela **nova**/card/tabela visual, ícone de aba, “ícone sumiu” | `fidelidade-ui` | “Tela lenta” é `performance-app`; label isolado sem print não entra |
+| CREATE TYPE, Prisma `enum` no schema, tipo SQL novo | `senior-banco-dados` | Union TS / `@IsIn` não é enum de banco |
 
 Ao criar skill nova: se a description repetir gatilho de outra, qualificar
 (“contrato **já consumido**”) ou delegar explicitamente (“quem faz X é Y”).

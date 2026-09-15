@@ -48,7 +48,8 @@ renomear ou extrair.
 
 ## Domínios
 
-- SQL, índice, plano, migração → `senior-banco-dados`
+- SQL, índice, plano, migração, Prisma enum, CREATE TYPE → `senior-banco-dados`
+  (sem ENUM de banco: VARCHAR + validação na API)
 - Pack de produto → só se o time tiver instalado a skill do domínio
 
 Novo domínio = nova skill + linha no mapa `orquestracao-agentes` (núcleo intacto).

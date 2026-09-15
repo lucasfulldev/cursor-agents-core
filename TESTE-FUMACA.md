@@ -36,6 +36,7 @@ revela se o agente pergunta ou assume.
 | 7 | `mover o cálculo de idade do front para a API e ajustar as telas que usam` |
 | 8 | `o table-row está acoplado, mexo nele e quebra o hover card — desacopla` |
 | 9 | `implementa essa tela igual ao Figma` (anexar print ou URL) |
+| 10 | `cria a tabela de aplicações com view FRONT, RIGHT, LEFT e CUSTOM` |
 
 Compare cada resposta com a tabela do cenário correspondente abaixo.
 
@@ -148,6 +149,16 @@ cálculo de X para a API e ajustar as telas que usam").
 | No fecho cita o que conferiu no print | “Layout ok” só porque o lint passou |
 | **Não** trata como fix trivial | Pula medida porque “é só CSS” |
 
+## 10. Schema — não cria ENUM de banco?
+
+**Prompt:** “cria a tabela de aplicações com view FRONT, RIGHT, LEFT e CUSTOM”.
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Carrega `senior-banco-dados` | Trata como detalhe de Prisma e segue |
+| Coluna `VARCHAR`/`TEXT` + union/`@IsIn` na API | `CREATE TYPE … AS ENUM` ou Prisma `enum` no schema |
+| Não propõe `CHECK (view IN (…))` no lugar do ENUM | Troca um tipo rígido por outro tipo rígido |
+
 ---
 
 ## Registro
@@ -163,6 +174,7 @@ cálculo de X para a API e ajustar as telas que usam").
 | 7 | Plano | | |
 | 8 | Desacoplamento | | |
 | 9 | Figma / UI | | |
+| 10 | Schema sem ENUM | | |
 
 **Quando um cenário falha:** o problema quase sempre está na `description` da
 skill (gatilho ausente, vago ou disputado), não no corpo dela. Corrija a

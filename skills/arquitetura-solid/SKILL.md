@@ -37,7 +37,8 @@ Depois desta skill: implementar com `codigo-limpo`.
 - [ ] 1. Enunciar o caso de uso em 1 frase (quem pede, o que recebe, o que sai)
 - [ ] 2. Definir contrato: entrada, saída, erros possíveis
 - [ ] 3. Escolher a fronteira: onde mora a regra, o que é adaptador
-- [ ] 4. Modelar tipos que impeçam estado inválido
+- [ ] 4. Modelar tipos que impeçam estado inválido (union/`as const` na
+        aplicação; não ENUM SQL — `senior-banco-dados`)
 - [ ] 5. Listar dependências e o que precisa ser invertido (I/O, tempo, random)
 - [ ] 6. Passar a lista de bordas para `testes-e-bordas`
 - [ ] 7. Só então codar (`codigo-limpo`)

@@ -94,7 +94,9 @@ dependência de I/O é injetada, sem `any` em código novo, sem sentinel mágico
 - Comentário no lugar de nome claro ou de extrair função
 - Renomear/mover/formatar em massa fora do escopo
 - Catch vazio ou “sucesso” silencioso após falha parcial
-- Magia numérica sem nome (`if (status === 3)` sem constante/enum do domínio)
+- Magia numérica sem nome (`if (status === 3)` sem constante/`as const` do domínio)
+- Prisma/`CREATE TYPE` ENUM para conjunto de strings (isso é
+  `senior-banco-dados`: `VARCHAR` + `@IsIn`)
 
 ## Relação com outras skills
 

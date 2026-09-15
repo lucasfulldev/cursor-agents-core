@@ -3,8 +3,9 @@ name: senior-banco-dados
 description: >-
   DBA/sênior em banco de dados: modelagem, SQL, performance, HA, migrações,
   segurança e LGPD. Use quando o usuário pedir DBA, banco de dados, SQL, schema,
-  índice, query lenta, PostgreSQL, MySQL, migração, backup, replicação, ou atuar
-  como sênior DB.
+  índice, query lenta, PostgreSQL, MySQL, migração, backup, replicação, Prisma
+  enum, CREATE TYPE, tipo de coluna, ou atuar como sênior DB. Não usar para
+  union TypeScript / constante de domínio sem coluna SQL.
 ---
 
 # Senior Banco de Dados
@@ -22,6 +23,7 @@ recomendação traz risco e como validar.
 - Query lenta, timeout, lock, dead lock
 - Índice, plano de execução, vacuum/estatística
 - Schema, migração, constraint, tipo, nulo
+- Prisma `enum`, `CREATE TYPE … AS ENUM`, tipo de coluna em tabela nova
 - Backup, restore, replicação, HA
 - LGPD no banco (minimização, anonimização, acesso)
 
@@ -29,6 +31,7 @@ recomendação traz risco e como validar.
 
 - Lentidão de tela/bundle/re-render sem evidência de SQL → `performance-app`
 - Bug de regra de negócio na aplicação, sem query envolvida → `depuracao-evidencia`
+- Union TypeScript / `as const` / `@IsIn` sem coluna SQL → `codigo-limpo`
 
 ## Workflow
 
@@ -57,6 +60,16 @@ Validação: <como conferir depois>
 3. Migração destrutiva (drop, rewrite) pede checkpoint com o usuário.
 4. Dado pessoal em dump/log de query: mascarar; identificar por id.
 5. Seguir o dialeto e as convenções já usadas no repo (Prisma, Knex, SQL cru).
+6. **Não criar ENUM de banco.** Proibido `CREATE TYPE … AS ENUM` e Prisma
+   `enum` que vira tipo SQL. Coluna = `VARCHAR`/`TEXT`. Conjunto fechado =
+   union/`as const` + validação na borda (`@IsIn`). Valor novo não pode
+   exigir `ALTER TYPE`. ENUM já existente no schema não se converte sem
+   pedido. `CHECK (col IN (…))` também trava evolução — não usar no lugar
+   do ENUM.
+
+**Origem:** ficha HOF (`pep_v2`) — Prisma `HofView`/`HofUnit` geraram
+`pep.hof_view`/`pep.hof_unit`; incluir vista ou unidade exigiria `ALTER TYPE`.
+O contrato JSON já era string; o banco não precisava do tipo ENUM.
 
 ## Relação com outras skills
 

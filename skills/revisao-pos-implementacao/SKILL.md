@@ -82,6 +82,8 @@ Delegar detalhe ao `codigo-limpo`. Focar em:
   `fidelidade-ui`. Asset inventado, SVG sem width/height, componente irmão
   ignorado ou controle do design ausente = **importante** (corrigir agora)
 - Mudou payload que outro serviço/front consome? → `contrato-api`
+- Diff de schema/migration? → `senior-banco-dados`. `CREATE TYPE … AS ENUM`
+  ou Prisma `enum` novo = **importante** (VARCHAR + validação na API agora)
 - Achado igual ao de uma revisão anterior? → `memoria-decisoes` (virar regra)
 
 ## Relação com outras skills

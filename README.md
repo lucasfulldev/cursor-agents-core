@@ -91,6 +91,7 @@ Sem mudança de código → sem gates e sem fecho.
 - Borda enumerada antes de implementar; bug nasce com teste vermelho
 - “Funciona” só com saída de comando — nunca por leitura de diff
 - Tela com Figma: medida do nó + componente irmão; lint verde não prova layout
+- Sem ENUM de banco: VARCHAR + validação na API (`senior-banco-dados`)
 - Segurança crítica bloqueia a entrega
 - Achado recorrente vira regra, não correção repetida
 - Diff mínimo em legado; revisão de fecho automática
