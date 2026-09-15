@@ -16,11 +16,13 @@ Seguir `orquestracao-agentes`: núcleo + transversais por risco + domínio se ca
 | Design (módulo/contrato novo) | `arquitetura-solid` |
 | Bordas e testes | `testes-e-bordas` |
 | Implementação | `codigo-limpo` |
+| UI / Figma (tela, layout, espaçamento) | `fidelidade-ui` |
 | Verificação executável | `gates-verificacao` |
 | Fecho | `revisao-pos-implementacao` |
 
-Bug → começar por `depuracao-evidencia`. Fix trivial pula design e bordas;
-gates e fecho continuam obrigatórios.
+Bug → começar por `depuracao-evidencia`. Fix trivial (label/texto) pula design e
+bordas; gates e fecho continuam obrigatórios. Figma/layout/espaçamento **não**
+é trivial — entra `fidelidade-ui`.
 
 Desacoplar código existente → `arquitetura-solid`, seção de legado (costura +
 teste de caracterização antes de mover). Ordem sempre: preparação sem mudança de

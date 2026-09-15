@@ -36,7 +36,8 @@ um guia de Clean Code do time, se existir.
 
 ```
 - [ ] 1. Entender o objetivo da task (não “limpar o mundo”)
-- [ ] 2. Ler o código tocado + padrões do arquivo/módulo vizinho
+- [ ] 2. Ler o código tocado + padrões do arquivo/módulo vizinho. UI: buscar
+        o componente irmão **antes** de criar outro (`fidelidade-ui`)
 - [ ] 3. Aplicar princípios na área alterada (tabela abaixo)
 - [ ] 4. Tratar bordas (null, validação, 404/409, FK, undefined ≠ false)
 - [ ] 5. Rodar checklist antes de concluir
@@ -104,6 +105,7 @@ dependência de I/O é injetada, sem `any` em código novo, sem sentinel mágico
 - `depuracao-evidencia` — quando a task é um bug
 - `revisao-pos-implementacao` — após implementar, revisar o diff sozinho (sem
   o usuário pedir "revise"); usa estes critérios
+- `fidelidade-ui` — tela/Figma/espaçamento; daqui só a higiene do código
 - Pack de domínio do time — processo do produto; esta skill = qualidade
   do código tocado em qualquer projeto
 - `senior-banco-dados` — SQL/schema; aqui só higiene do código em volta

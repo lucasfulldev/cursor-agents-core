@@ -44,6 +44,7 @@ gatilhos e, se o tema casar com um pack de domínio, ler essa skill.
 | **1. Design** | `arquitetura-solid` | Módulo/feature nova, contrato, acoplamento |
 | **2. Bordas e testes** | `testes-e-bordas` | Bug, regra de negócio, entrada externa |
 | **3. Implementação** | `codigo-limpo` | Sempre ao alterar código |
+| **3b. UI / Figma** | `fidelidade-ui` | Tela, layout, Figma, print, espaçamento |
 | **4. Verificação** | `gates-verificacao` | Antes de concluir |
 | **5. Fecho** | `revisao-pos-implementacao` | Ao terminar |
 
@@ -54,7 +55,8 @@ cara de corrigir depois.
 
 **Aplicar quando:** feature nova, US genérica, pedido com “e”/“também”,
 regra de negócio não escrita.
-**Pular quando:** bug com causa conhecida, fix trivial, spec já fechada.
+**Pular quando:** bug com causa conhecida, fix trivial (label, texto, uma linha), spec já fechada.
+**Não pular** só porque a spec existe: se a entrega é tela, Figma ainda manda na implementação (`fidelidade-ui`).
 
 ```
 - [ ] 1. Ator e valor: quem usa e para quê
@@ -149,7 +151,8 @@ roda sozinho.
 
 ```
 Estimador? → Domínio? → Requisitos → Plano → Design → Bordas/Testes
-           → Implementação → Gates → Fecho
+           → Implementação (`codigo-limpo` + `fidelidade-ui` se houver tela)
+           → Gates → Fecho
 Transversais: Segurança (se toca dado/permissão) · Contrato (se cruza serviço)
 Entrega: Git/PR · Memória (se houve decisão)
 ```
@@ -177,6 +180,9 @@ Implementação → Gates → Fecho
 (pular design e matriz de bordas)
 ```
 
+**Não é trivial:** Figma, layout, espaçamento, tela nova, controle visível
+(expandir, tabela, divisor). Aí entra `fidelidade-ui`.
+
 ### Pergunta / arquitetura (sem diff)
 
 ```
@@ -188,8 +194,8 @@ Sem gates, sem fecho
 
 1. Núcleo **não depende** de domínio algum.
 2. Um domínio (ou nenhum) por task; transversais podem somar.
-3. Calibrar ao tamanho: design e bordas são dispensáveis em ajuste trivial;
-   gates e fecho, nunca.
+3. Calibrar ao tamanho: design e bordas são dispensáveis em ajuste trivial
+   (label/texto); Figma/layout não é trivial. Gates e fecho, nunca.
 4. Não pedir “revise” ao usuário: o fecho é do agente.
 5. Não afirmar que funciona sem evidência de execução.
 6. Achado crítico de segurança **bloqueia** o fecho.
@@ -197,7 +203,8 @@ Sem gates, sem fecho
 
 ## Frases que disparam
 
-- Núcleo: feature, bug, implementa, arquitetura, SOLID, teste, “compila?”, revise
+- Núcleo: feature, bug, implementa, arquitetura, SOLID, teste, “compila?”, revise,
+  Figma, layout, espaçamento, “não está igual”
 - Transversal: permissão, LGPD, CPF, segredo, payload, DTO, contrato, commit, PR
 - Sob demanda: lento, N+1, log, monitoramento, stacktrace, horas, sizing
 - Domínio: nomes do produto/repo do pack instalado, SQL, deploy
@@ -219,6 +226,7 @@ reivindicarem o mesmo gatilho, a escolha vira sorteio.
 | ordem dos passos, “por onde começo”, entrega em fases | `orquestracao-agentes` (estágio 0.6) | Split no commit é `git-pr`, e chega tarde |
 | log, correlação, alerta | `observabilidade` | PII em log é `seguranca-codigo` |
 | lento, N+1, timeout | `performance-app` | Query lenta em banco é `senior-banco-dados` |
+| Figma, layout, espaçamento, alinhamento, “não está igual ao Figma”, tela **nova**/card/tabela visual | `fidelidade-ui` | “Tela lenta” é `performance-app`; label isolado sem print não entra |
 
 Ao criar skill nova: se a description repetir gatilho de outra, qualificar
 (“contrato **já consumido**”) ou delegar explicitamente (“quem faz X é Y”).

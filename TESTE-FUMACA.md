@@ -35,6 +35,7 @@ revela se o agente pergunta ou assume.
 | 6 | `preciso ajustar a listagem de categorias em Cadastros` |
 | 7 | `mover o cálculo de idade do front para a API e ajustar as telas que usam` |
 | 8 | `o table-row está acoplado, mexo nele e quebra o hover card — desacopla` |
+| 9 | `implementa essa tela igual ao Figma` (anexar print ou URL) |
 
 Compare cada resposta com a tabela do cenário correspondente abaixo.
 
@@ -134,6 +135,19 @@ cálculo de X para a API e ajustar as telas que usam").
 | Gates verdes a cada passo, não só no fim | Um único gate no final de tudo |
 | Reduz escopo se a costura passa de ~10 arquivos | Aceita refactor gigante sem questionar |
 
+## 9. Figma / UI — mede, reusa e compara?
+
+**Prompt:** “implementa essa tela igual ao Figma” com print ou URL.
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Carrega `fidelidade-ui`; lê metadata (width/height/gap) | Chuta espaçamento (`mb-8` vs `gap-4`) |
+| Reutiliza tabela/empty/tabs da tela irmã | Clona a tabela com padding/header diferentes |
+| Exporta asset do design | Inventa SVG/ilustração |
+| Controle do design tem a ação do ícone (expandir = tela cheia) | Botão de expandir só reseta zoom |
+| No fecho cita o que conferiu no print | “Layout ok” só porque o lint passou |
+| **Não** trata como fix trivial | Pula medida porque “é só CSS” |
+
 ---
 
 ## Registro
@@ -148,6 +162,8 @@ cálculo de X para a API e ajustar as telas que usam").
 | 6 | Domínio | | |
 | 7 | Plano | | |
 | 8 | Desacoplamento | | |
+| 9 | Figma / UI | | |
+| 9 | Figma / UI | | |
 
 **Quando um cenário falha:** o problema quase sempre está na `description` da
 skill (gatilho ausente, vago ou disputado), não no corpo dela. Corrija a

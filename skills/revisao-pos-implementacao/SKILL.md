@@ -78,6 +78,9 @@ Delegar detalhe ao `codigo-limpo`. Focar em:
 - Diff mínimo; sem debug; testes de regressão se o caminho já tiver suíte
 - Tocou permissão, dado pessoal ou segredo? → `seguranca-codigo`
   (achado crítico de segurança **bloqueia** o fecho)
+- Diff de UI (Figma, layout, tabela, espaçamento, empty state)? →
+  `fidelidade-ui`. Asset inventado, componente irmão ignorado ou controle
+  do design ausente = **importante** (corrigir na mesma resposta)
 - Mudou payload que outro serviço/front consome? → `contrato-api`
 - Achado igual ao de uma revisão anterior? → `memoria-decisoes` (virar regra)
 
@@ -86,6 +89,7 @@ Delegar detalhe ao `codigo-limpo`. Focar em:
 - `orquestracao-agentes` — mapa núcleo + domínios
 - `codigo-limpo` — critérios e checklist (ler ao aplicar esta skill)
 - `gates-verificacao` — evidência executável exigida no fecho
+- `fidelidade-ui` — no fecho de tela, exige comparação com o design
 - `testes-e-bordas` — regressão quando o achado é bug
 - Pack de domínio do time — processo do produto; esta skill fecha a
   qualidade do diff em qualquer projeto

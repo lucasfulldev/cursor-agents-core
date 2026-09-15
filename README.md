@@ -25,6 +25,7 @@ rules/      → ~/.cursor/rules/
 | Design | `arquitetura-solid` | Contrato, fronteira, SOLID, tipos |
 | Bordas e testes | `testes-e-bordas` | Matriz de casos + regressão |
 | Implementação | `codigo-limpo` | Clean Code, diff mínimo |
+| UI / Figma | `fidelidade-ui` | Medida do design, reuso, sem inventar asset |
 | Verificação | `gates-verificacao` | Typecheck/lint/test com evidência |
 | Fecho | `revisao-pos-implementacao` | Revisão automática do diff |
 
@@ -56,7 +57,7 @@ Feature nova:
 
 ```
 Estimador? → Domínio? → Requisitos → Plano → Design → Bordas/Testes
-           → Código limpo → Gates → Fecho
+           → Código limpo (+ fidelidade-ui se houver tela) → Gates → Fecho
 + transversais (segurança / contrato) conforme o risco
 ```
 
@@ -89,6 +90,7 @@ Sem mudança de código → sem gates e sem fecho.
 - Legado se desacopla por costura + teste de caracterização, nunca por reescrita
 - Borda enumerada antes de implementar; bug nasce com teste vermelho
 - “Funciona” só com saída de comando — nunca por leitura de diff
+- Tela com Figma: medida do nó + componente irmão; lint verde não prova layout
 - Segurança crítica bloqueia a entrega
 - Achado recorrente vira regra, não correção repetida
 - Diff mínimo em legado; revisão de fecho automática
