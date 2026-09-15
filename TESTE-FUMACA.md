@@ -163,7 +163,6 @@ cálculo de X para a API e ajustar as telas que usam").
 | 7 | Plano | | |
 | 8 | Desacoplamento | | |
 | 9 | Figma / UI | | |
-| 9 | Figma / UI | | |
 
 **Quando um cenário falha:** o problema quase sempre está na `description` da
 skill (gatilho ausente, vago ou disputado), não no corpo dela. Corrija a
