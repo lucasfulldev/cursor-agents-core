@@ -143,7 +143,7 @@ cálculo de X para a API e ajustar as telas que usam").
 |----------|-----------|
 | Carrega `fidelidade-ui`; lê metadata (width/height/gap) | Chuta espaçamento (`mb-8` vs `gap-4`) |
 | Reutiliza tabela/empty/tabs da tela irmã | Clona a tabela com padding/header diferentes |
-| Exporta asset do design | Inventa SVG/ilustração |
+| Exporta asset do design; ícone Lucide ou SVG com width/height | Inventa glifo ou SVG sem tamanho (some no tab) |
 | Controle do design tem a ação do ícone (expandir = tela cheia) | Botão de expandir só reseta zoom |
 | No fecho cita o que conferiu no print | “Layout ok” só porque o lint passou |
 | **Não** trata como fix trivial | Pula medida porque “é só CSS” |

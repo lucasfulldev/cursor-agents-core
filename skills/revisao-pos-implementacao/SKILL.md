@@ -79,8 +79,8 @@ Delegar detalhe ao `codigo-limpo`. Focar em:
 - Tocou permissão, dado pessoal ou segredo? → `seguranca-codigo`
   (achado crítico de segurança **bloqueia** o fecho)
 - Diff de UI (Figma, layout, tabela, espaçamento, empty state)? →
-  `fidelidade-ui`. Asset inventado, componente irmão ignorado ou controle
-  do design ausente = **importante** (corrigir na mesma resposta)
+  `fidelidade-ui`. Asset inventado, SVG sem width/height, componente irmão
+  ignorado ou controle do design ausente = **importante** (corrigir agora)
 - Mudou payload que outro serviço/front consome? → `contrato-api`
 - Achado igual ao de uma revisão anterior? → `memoria-decisoes` (virar regra)
 

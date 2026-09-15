@@ -4,9 +4,9 @@ description: >-
   Implementa tela a partir do design (Figma ou print): mede nós, reutiliza o
   componente já existente no produto e não inventa asset nem espaçamento. Use
   quando houver Figma, print, layout, alinhamento, espaçamento, tela nova, card,
-  tabela visual, empty state, ícone de expandir, ou o usuário disser que “não
-  está igual ao Figma”. Não usar para API/SQL sem UI, nem para “tela lenta”
-  (isso é performance-app).
+  tabela visual, empty state, ícone de aba, SVG custom, expandir, “ícone sumiu”,
+  ou o usuário disser que não está igual ao Figma. Não usar para API/SQL sem UI,
+  nem para “tela lenta” (isso é performance-app).
 ---
 
 # Fidelidade de UI
@@ -18,7 +18,8 @@ sem comparar com o design.
 **Origem:** tela com design + módulo irmão no mesmo produto — título desalinhado
 do card, sem divisor, canvas grande demais, busca mais estreita que o card,
 gaps mistos no mesmo bloco, expandir só resetava zoom, tabela reescrita em
-vez da já usada na aba vizinha.
+vez da aba vizinha, ícone do Figma virando SVG sem `width`/`height` (some
+no tab).
 
 ## Quando usar
 
@@ -43,7 +44,8 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
 - [ ] 2. Ler o design: metadata (x, y, width, height, gap) + screenshot.
         Anotar as medidas que viram CSS — não chutar
 - [ ] 3. Exportar asset do design. Proibido inventar SVG/ilustração que o
-        arquivo já tem
+        arquivo já tem. Ícone: Lucide se o glifo for o mesmo; senão SVG do
+        Figma com `currentColor`
 - [ ] 4. Mapear cada controle do design → ação real (nome da camada + ícone)
 - [ ] 5. Implementar com as medidas. Um grupo visual = um gap
 - [ ] 6. Comparar implementação vs print: colunas alinhadas, divisor, tamanho,
@@ -68,10 +70,16 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
    task (divisor vertical, tela cheia, switch).
 7. **Alinhamento de colunas.** Título da esquerda e card da direita na
    mesma linha de topo, se o design mostrar isso.
+8. **Ícone customizado tem tamanho intrínseco.** SVG em tab/flex leva
+   `width` e `height` no elemento (padrão Lucide). Classe `size-*` só
+   no arquivo que o Tailwind **varre** (`app/`, `components/`). Em
+   pasta fora do `content` a classe não entra no CSS e o ícone some —
+   tamanho 0. `shrink-0`. `currentColor` no `stroke`/`fill`.
 
 ## Anti-padrões
 
-- Ilustração/SVG inventados com o Figma aberto
+- Ilustração/SVG inventados com o Figma aberto (smile no lugar da estrela)
+- SVG custom só com `className="size-[18px]"` em pasta fora do `content` do Tailwind
 - Tabela nova quando a aba vizinha já tem `Table` + `TableEmptyState` + ações
 - `fitView()` no botão de expandir
 - Declarar layout ok depois de ler o CSS, sem bater no print

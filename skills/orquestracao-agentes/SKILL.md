@@ -226,7 +226,7 @@ reivindicarem o mesmo gatilho, a escolha vira sorteio.
 | ordem dos passos, “por onde começo”, entrega em fases | `orquestracao-agentes` (estágio 0.6) | Split no commit é `git-pr`, e chega tarde |
 | log, correlação, alerta | `observabilidade` | PII em log é `seguranca-codigo` |
 | lento, N+1, timeout | `performance-app` | Query lenta em banco é `senior-banco-dados` |
-| Figma, layout, espaçamento, alinhamento, “não está igual ao Figma”, tela **nova**/card/tabela visual | `fidelidade-ui` | “Tela lenta” é `performance-app`; label isolado sem print não entra |
+| Figma, layout, espaçamento, alinhamento, “não está igual ao Figma”, tela **nova**/card/tabela visual, ícone de aba, “ícone sumiu” | `fidelidade-ui` | “Tela lenta” é `performance-app`; label isolado sem print não entra |
 
 Ao criar skill nova: se a description repetir gatilho de outra, qualificar
 (“contrato **já consumido**”) ou delegar explicitamente (“quem faz X é Y”).
