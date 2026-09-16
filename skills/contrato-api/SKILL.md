@@ -34,6 +34,8 @@ consumidores que ninguém lembrou de olhar.
 - [ ] 4. Classificar cada mudança (tabela abaixo)
 - [ ] 5. Breaking? planejar rollout em duas fases
 - [ ] 6. Ajustar produtor e consumidores na mesma task (ou versionar)
+- [ ] 6b. Valor novo em união/tipo: banco + API + **mapa de label no front**
+        no mesmo lote — senão a UI mostra `undefined`
 - [ ] 7. Validar as duas pontas com `gates-verificacao`
 ```
 

@@ -50,8 +50,9 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
 - [ ] 1. Achar a tela irmã no mesmo produto (aba/módulo vizinho) e listar o
         que já existe: tabela, empty state, tabs, sheet, botão, header,
         Loading/Skeleton, faixa/strip, modal de anexo
-- [ ] 2. Ler o design: metadata (x, y, width, height, gap) + screenshot.
-        Anotar as medidas que viram CSS — não chutar
+- [ ] 2. Se houver URL de design: **usar a ferramenta** (metadata +
+        screenshot + export). Proibido lembrar o layout ou gerar
+        ilustração. Anotar width/height/gap que viram CSS
 - [ ] 3. Exportar asset do design. Proibido inventar SVG/ilustração que o
         arquivo já tem. Ícone: Lucide se o glifo for o mesmo; senão SVG do
         Figma com `currentColor`
@@ -59,9 +60,11 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
 - [ ] 5. Implementar com as medidas. Um grupo visual = um gap
 - [ ] 6. Comparar implementação vs print: colunas alinhadas, divisor, tamanho,
         campo vs card, controles presentes, loading, overflow, hit area
-- [ ] 7. Antes do fecho: listar o que ainda falta vs o design. Não esperar o
-        usuário perguntar “falta mais nada?”
-- [ ] 8. Sem essa comparação, a tela não está pronta — lint verde não conta
+- [ ] 7. **Exercer o gesto novo** (arrastar, upload, expandir, zoom) — print
+        estático não prova interação
+- [ ] 8. Antes do fecho: listar o que ainda falta vs o design **e** vs o
+        vídeo de fluxo. Não esperar “falta mais nada?”
+- [ ] 9. Sem essa comparação, a tela não está pronta — lint verde não conta
 ```
 
 ## Regras (verificáveis)
@@ -91,7 +94,8 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
    enquanto o asset base ainda não pintou é bug. Skeleton (o da tela irmã)
    até o `onLoad`/frame medido; overlay só depois disso.
 10. **Faixa que transborda rola, não encolhe.** Item mantém o tamanho do
-    design. Ação fixa (adicionar) permanece visível e **alinhada** com a
+    design — a mídia enviada **não** estoura altura/largura do thumb.
+    Ação fixa (adicionar) permanece visível e **alinhada** com a
     faixa. Affordance de “tem mais” (sombra/fade) só no eixo que
     transborda — e tem que ser visível com os itens reais (N thumbs).
     Sem scroll no eixo que não transborda. Desktop: chevron se o irmão
@@ -136,10 +140,13 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
 - `undefined` visível; X/expandir por baixo da imagem
 - Upload que não seleciona nem rola até o item novo
 - Pontos/marcadores que saltam ao expandir porque mediram o box, não a mídia
+- Gerar ilustração com a URL do Figma aberta, sem puxar o asset
+- Declarar drag/upload/expandir ok só com print, sem exercer o gesto
 
 ## Evidência no fecho
 
-Citar: nós/medidas usados, componente irmão reutilizado, o que conferiu no
+Citar: nós/medidas usados, **ferramenta de design** (não memória), componente
+irmão reutilizado, gesto exercido (drag/upload/expandir), o que conferiu no
 print (alinhamento, divisor, tamanho, controles, loading, overflow, hit
 area) e o que ainda falta vs o design. Sem isso, a UI não passou.
 

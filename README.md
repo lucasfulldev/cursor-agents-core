@@ -97,6 +97,37 @@ Sem mudança de código → sem gates e sem fecho.
 - Diff mínimo em legado; revisão de fecho automática
 - Um gatilho, um dono: description que disputa palavra com outra skill vira sorteio
 
+## O que o núcleo já antecipa
+
+Pergunta repetida em task longa vira regra. Inventário (não é dica):
+
+| O usuário ainda precisa pedir? | Skill |
+|--------------------------------|-------|
+| Medir Figma, não inventar asset, expandir = tela cheia | `fidelidade-ui` |
+| Usar a ferramenta de design quando há URL | `fidelidade-ui` |
+| Loading que não finge tela pronta | `fidelidade-ui` |
+| Faixa rola; item não encolhe; sombra só no eixo certo | `fidelidade-ui` |
+| Controle novo não cobre outro; hit area = botão | `fidelidade-ui` |
+| Fluxo irmão (modal, upload, anexos), não só a tabela | `fidelidade-ui` |
+| Não pintar `undefined`; chrome acima da mídia | `fidelidade-ui` |
+| Depois do upload: selecionar, rolar, transição suave | `fidelidade-ui` |
+| Overlay depois de expandir: quadro pintado, px do design | `fidelidade-ui` |
+| Variantes do clique (tipo A / tipo B) no aceite | `fidelidade-ui` |
+| Gesto novo exercido (drag/upload), print não basta | `fidelidade-ui` |
+| Identidade (cor, código) no cadastro; tela de uso exibe | `arquitetura-solid` |
+| Duas listas do mesmo id após delete/upload | `depuracao-evidencia` |
+| PATCH omitido ≠ `null`; valor novo tem label no front | `contrato-api` |
+| Sem ENUM SQL | `senior-banco-dados` |
+| `o que acha?` sem “adiciona” = resposta, não diff | `orquestracao-agentes` |
+| Erro da skill → patch da skill na mesma conversa | `orquestracao-agentes` |
+| Push cita URL; repo público sem nome de produto/secret | `git-pr` + `seguranca-codigo` |
+
+## O que **não** entra no núcleo
+
+- Nome, iframe, paleta, tipo de arquivo ou hash de um produto
+- Pack de domínio, runbook de infra, mapa de serviços internos
+- Rewrite de git history (só com pedido explícito)
+
 ## Validar
 
 Cada skill tem **um** dono por gatilho (tabela em `orquestracao-agentes`). Depois

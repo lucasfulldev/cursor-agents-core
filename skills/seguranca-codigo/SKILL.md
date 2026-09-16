@@ -5,7 +5,8 @@ description: >-
   recurso (IDOR), injeção, XSS, upload, segredos, multi-tenant e PII/LGPD em log,
   URL e export. Use ao mexer em login, permissão, token, endpoint, upload, dado
   pessoal/CPF, .env, ou quando o usuário mencionar segurança, LGPD, vazamento,
-  acesso indevido. Não usar para segurança de infraestrutura de rede.
+  repo público, acesso indevido. Não usar para segurança de infraestrutura de
+  rede.
 ---
 
 # Segurança de código (AppSec)
@@ -22,6 +23,7 @@ Contexto sensível: dado pessoal identificável é **PII** (LGPD). Dado de saúd
 - Login, sessão, token, permissão, perfil, multi-tenant (organização/unidade)
 - Upload, download, export, relatório, integração externa
 - Qualquer log/mensagem que possa carregar CPF, nome, documento pessoal
+- Repo ou skill pack **público**: “tem vazamento?”, auditoria de diff/docs
 
 ## Workflow
 
@@ -46,6 +48,7 @@ Contexto sensível: dado pessoal identificável é **PII** (LGPD). Dado de saúd
 | **Upload** | Tipo, tamanho, nome sanitizado, destino fora do webroot |
 | **Segredos** | Chave/token no código, no `.env` commitado, em log de build |
 | **PII** | CPF/nome/documento em log, query string, analytics, mensagem de erro |
+| **Repo público** | Diff/docs/skills sem nome interno de produto, secret, PII, e-mail, path local |
 | **Erro** | Stacktrace ou SQL cru devolvido ao cliente |
 | **Rate limit** | Endpoint de login, busca e export protegidos |
 

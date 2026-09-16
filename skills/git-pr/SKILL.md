@@ -3,9 +3,9 @@ name: git-pr
 description: >-
   Organiza a entrega em git: commits coesos com mensagem que explica o porquê,
   PR com contexto e risco, e divisão de mudança grande em partes menores. Use
-  ao commitar, abrir PR, escrever mensagem de commit, dividir mudança, ou quando
-  o usuário mencionar branch, push, split de PR. Regras de branch/changelog do
-  produto ficam na skill de domínio.
+  ao commitar, abrir PR, escrever mensagem de commit, dividir mudança, "subiu?",
+  ou quando o usuário mencionar branch, push, split de PR. Regras de
+  branch/changelog do produto ficam na skill de domínio.
 ---
 
 # Git e Pull Request
@@ -25,6 +25,9 @@ produto pertence à skill de domínio (ex.: branch base e changelog do time).
 - [ ] 1. Gates verdes (`gates-verificacao`)
 - [ ] 2. Revisar `git diff` inteiro — nada de arquivo entrando por acidente
 - [ ] 3. Sem segredo, `.env`, credencial, dump ou log de debug
+- [ ] 3b. Repo **público**: grep no diff de nome interno de produto, PII,
+        e-mail, path de máquina. Sem `push --force` / rewrite de histórico
+        sem pedido explícito
 - [ ] 4. Agrupar por preocupação: 1 commit = 1 mudança coesa
 ```
 
@@ -72,6 +75,8 @@ de comportamento → limpeza do que ficou órfão.
 3. `push --force` em `main`/`release` só com pedido explícito.
 4. Não commitar sem os gates; commit vermelho suja o histórico.
 5. Não criar commit “WIP” na entrega final.
+6. Depois do push: citar a URL (commit/PR). Não esperar o usuário perguntar
+   “subiu?”.
 
 ## Relação com outras skills
 

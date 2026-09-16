@@ -197,6 +197,10 @@ Domínio? → responder
 Sem gates, sem fecho
 ```
 
+`o que acha?` / `faz sentido?` / `interessante colocar X?` **sem**
+`adiciona` / `faz` / `implementa` / `coloque` → **só responder**. Não
+abrir diff de feature especulativa no mesmo turno.
+
 ## Regras
 
 1. Núcleo **não depende** de domínio algum.
@@ -207,6 +211,9 @@ Sem gates, sem fecho
 5. Não afirmar que funciona sem evidência de execução.
 6. Achado crítico de segurança **bloqueia** o fecho.
 7. Regras duras do produto (branch, ID de task, changelog) ficam na skill do domínio.
+8. Opinião de UX sem verbo de ação = resposta, não código.
+9. Usuário aponta erro da skill (ENUM, asset inventado, ícone) → patch do
+   skill dono **nesta conversa**; não deixar só o código do produto.
 
 ## Frases que disparam
 
@@ -238,6 +245,9 @@ reivindicarem o mesmo gatilho, a escolha vira sorteio.
 | “não tá saindo da lista”, sumiu numa superfície e ficou na outra | `depuracao-evidencia` | Não é polish de `fidelidade-ui` — é mutação que não atualiza todas as vistas |
 | “mesmo modal”, upload que não vai pra anexos, fluxo do módulo irmão | `fidelidade-ui` | Contrato do tipo de arquivo novo é `contrato-api` + `senior-banco-dados` |
 | PATCH apagou campo que o cliente não mandou, omitido virou `null` | `contrato-api` | `undefined` pintado na UI é `fidelidade-ui` (mapa de label) |
+| “o que acha?”, “faz sentido?”, opinião sem “adiciona/faz/coloque” | `orquestracao-agentes` (pergunta) | “onde mora no cadastro?” continua `arquitetura-solid`; “coloque no canto X” é `fidelidade-ui` |
+| “subiu?”, push, URL do commit/PR | `git-pr` | — |
+| vazamento, repo público, skill pack público | `seguranca-codigo` | Nome de produto no núcleo genérico é vazamento; rewrite de git é `git-pr` |
 | CREATE TYPE, Prisma `enum` no schema, tipo SQL novo | `senior-banco-dados` | Union TS / `@IsIn` não é enum de banco |
 
 Ao criar skill nova: se a description repetir gatilho de outra, qualificar
