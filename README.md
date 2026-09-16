@@ -156,6 +156,11 @@ ln -sf "$(pwd)/rules/roteamento-agentes.mdc" ~/.cursor/rules/roteamento-agentes.
 
 Abra um **chat novo** no Cursor após sincronizar.
 
+## Contribuir
+
+Fork → branch → Pull request. Sem push direto no `main`. Detalhe em
+[CONTRIBUTING.md](./CONTRIBUTING.md).
+
 ## Licença
 
 MIT. Veja [LICENSE](./LICENSE).
