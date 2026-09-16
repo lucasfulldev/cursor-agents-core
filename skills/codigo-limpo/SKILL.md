@@ -94,6 +94,8 @@ dependência de I/O é injetada, sem `any` em código novo, sem sentinel mágico
 - Comentário no lugar de nome claro ou de extrair função
 - Renomear/mover/formatar em massa fora do escopo
 - Catch vazio ou “sucesso” silencioso após falha parcial
+- `onLoad`/`onError`/rAF de um `src` que já não é o atual
+- Merge que só acrescenta chave e ignora URL nova do mesmo id
 - Magia numérica sem nome (`if (status === 3)` sem constante/`as const` do domínio)
 - Prisma/`CREATE TYPE` ENUM para conjunto de strings (isso é
   `senior-banco-dados`: `VARCHAR` + `@IsIn`)

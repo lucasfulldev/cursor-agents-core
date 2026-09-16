@@ -71,6 +71,7 @@ regra de negócio não escrita.
 - [ ] 9. Variantes do design (tipo A vs tipo B no clique) entram no aceite
 - [ ] 10. Vídeo de fluxo anexado: listar os passos visíveis como aceite
 - [ ] 11. Fluxo irmão (modal, upload, anexos): reusar, não redesenhar
+- [ ] 12. Mídia trocável: corrida de load (A→B→C) e URL de sessão não persistida
 ```
 
 Regras: mais de uma entrega de valor no pedido → propor **fatiar**; não escrever
@@ -218,7 +219,8 @@ abrir diff de feature especulativa no mesmo turno.
 ## Frases que disparam
 
 - Núcleo: feature, bug, implementa, arquitetura, SOLID, teste, “compila?”, revise,
-  Figma, layout, espaçamento, “não está igual”, “ajeite o load”, “onde colocar”
+  Figma, layout, espaçamento, “não está igual”, “ajeite o load”, “onde colocar”,
+  “tela cinza”, “fica sem nada”
 - Transversal: permissão, LGPD, CPF, segredo, payload, DTO, contrato, commit, PR
 - Sob demanda: lento, N+1, log, monitoramento, stacktrace, horas, sizing
 - Domínio: nomes do produto/repo do pack instalado, SQL, deploy
@@ -248,6 +250,8 @@ reivindicarem o mesmo gatilho, a escolha vira sorteio.
 | “o que acha?”, “faz sentido?”, opinião sem “adiciona/faz/coloque” | `orquestracao-agentes` (pergunta) | “onde mora no cadastro?” continua `arquitetura-solid`; “coloque no canto X” é `fidelidade-ui` |
 | “subiu?”, push, URL do commit/PR | `git-pr` | — |
 | vazamento, repo público, skill pack público | `seguranca-codigo` | Nome de produto no núcleo genérico é vazamento; rewrite de git é `git-pr` |
+| “tela cinza”, load que não sai, “troca rápido”, mídia/thumb vazia com o item ainda na lista | `depuracao-evidencia` | Implementar fade/faixa nova é `fidelidade-ui`; persistir `blob:` é `contrato-api` |
+| persistir `blob:` / object URL no payload | `contrato-api` | Recriar URL no front a partir do id é `fidelidade-ui` |
 | CREATE TYPE, Prisma `enum` no schema, tipo SQL novo | `senior-banco-dados` | Union TS / `@IsIn` não é enum de banco |
 
 Ao criar skill nova: se a description repetir gatilho de outra, qualificar

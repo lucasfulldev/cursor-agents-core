@@ -83,12 +83,14 @@ Delegar detalhe ao `codigo-limpo`. Focar em:
   ignorado, controle do design ausente, loading que finge tela pronta,
   faixa que encolhe, controle novo em cima de outro, `undefined` na tela,
   chrome por baixo da mídia, upload sem focar o item, overlay que salta
-  no expandir = **importante** (corrigir agora). Fecho de UI lista o que
+  no expandir, troca rápida que deixa tela cinza, thumb vazia com URL
+  revogada = **importante** (corrigir agora). Fecho de UI lista o que
   ainda falta vs o design — não esperar “falta mais nada?”
 - Duas superfícies do mesmo id (tabela vs faixa) dessincronizadas após
   upload/exclusão = **importante** (`depuracao-evidencia` + correção agora)
 - Mudou payload que outro serviço/front consome? → `contrato-api`.
-  PATCH que transforma omitido em `null` = **importante**
+  PATCH que transforma omitido em `null` = **importante**.
+  Persistiu `blob:` / object URL = **importante**
 - Diff de schema/migration? → `senior-banco-dados`. `CREATE TYPE … AS ENUM`
   ou Prisma `enum` novo = **importante** (VARCHAR + validação na API agora)
 - Achado igual ao de uma revisão anterior? → `memoria-decisoes` (virar regra)

@@ -113,7 +113,9 @@ Pergunta repetida em task longa vira regra. Inventário (não é dica):
 | Depois do upload: selecionar, rolar, transição suave | `fidelidade-ui` |
 | Overlay depois de expandir: quadro pintado, px do design | `fidelidade-ui` |
 | Variantes do clique (tipo A / tipo B) no aceite | `fidelidade-ui` |
-| Gesto novo exercido (drag/upload), print não basta | `fidelidade-ui` |
+| Gesto novo exercido (drag/upload/**troca rápida**), print não basta | `fidelidade-ui` |
+| Troca rápida de mídia não trava skeleton; ignora load abortado | `fidelidade-ui` |
+| URL de sessão (`blob:`) não persiste; merge atualiza URL do mesmo id | `fidelidade-ui` + `contrato-api` |
 | Identidade (cor, código) no cadastro; tela de uso exibe | `arquitetura-solid` |
 | Duas listas do mesmo id após delete/upload | `depuracao-evidencia` |
 | PATCH omitido ≠ `null`; valor novo tem label no front | `contrato-api` |

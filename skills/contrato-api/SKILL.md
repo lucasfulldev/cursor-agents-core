@@ -5,9 +5,10 @@ description: >-
   consumidores, classifica mudança como aditiva ou breaking, define rollout e
   valida as duas pontas. Use ao alterar payload, DTO, endpoint, query param já em
   uso, mudar ou remover campo,
-  enum, resposta de erro, PATCH que apaga campo omitido, ou quando o front
-  não recebe/envia o campo esperado, integração entre repos, versionamento.
-  Não usar para mudança interna que não cruza fronteira de serviço.
+  enum, resposta de erro, PATCH que apaga campo omitido, blob/object URL no
+  payload, ou quando o front não recebe/envia o campo esperado, integração
+  entre repos, versionamento. Não usar para mudança interna que não cruza
+  fronteira de serviço.
 ---
 
 # Contrato de API
@@ -76,6 +77,8 @@ listando os repos tocados.
   operacional, detalhe) passa a ler o campo — grep, não memória
 - **Label de tipo/status**: valor novo no contrato tem mapa no front;
   senão a UI mostra `undefined`
+- **URL de sessão**: `blob:` / object URL não entra no payload persistido.
+  O consumidor recria a URL a partir do id do arquivo
 - **Data/hora**: fuso e formato (ISO com offset) combinados nas duas pontas
 - Tipos do consumidor gerados/duplicados manualmente → atualizar junto
 

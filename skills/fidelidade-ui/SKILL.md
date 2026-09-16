@@ -7,9 +7,9 @@ description: >-
   tabela visual, empty state, ícone de aba, SVG custom, expandir, “ícone sumiu”,
   load, skeleton, “ajeite o load”, scroll da faixa, sombra, “ficou em cima”,
   hit area, cursor, undefined, mesmo modal, “ficou por baixo”, suave,
-  “não tá scrollando”, pontos ao expandir, ou o usuário disser que não está
-  igual ao Figma. Não usar para API/SQL sem UI, nem para “tela lenta”
-  (isso é performance-app).
+  “não tá scrollando”, pontos ao expandir, tela cinza, “fica sem nada”,
+  troca rápido, ou o usuário disser que não está igual ao Figma. Não usar
+  para API/SQL sem UI, nem para “tela lenta” (isso é performance-app).
 ---
 
 # Fidelidade de UI
@@ -25,7 +25,8 @@ vez da aba vizinha, ícone do Figma virando SVG sem `width`/`height` (some
 no tab). Depois: layout “pronto” vazio; faixa que encolhe; controle novo em
 cima de outro; hit area de um pixel; tabela irmã reusada mas modal/upload
 não; `undefined` na tela; X por baixo da mídia; upload sem focar o item;
-overlay que sai do lugar no expandir.
+overlay que sai do lugar no expandir; troca rápida de mídia deixando tela
+cinza; thumb/canvas vazios com URL de sessão revogada.
 
 ## Quando usar
 
@@ -60,8 +61,8 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
 - [ ] 5. Implementar com as medidas. Um grupo visual = um gap
 - [ ] 6. Comparar implementação vs print: colunas alinhadas, divisor, tamanho,
         campo vs card, controles presentes, loading, overflow, hit area
-- [ ] 7. **Exercer o gesto novo** (arrastar, upload, expandir, zoom) — print
-        estático não prova interação
+- [ ] 7. **Exercer o gesto novo** (arrastar, upload, expandir, zoom, **trocar
+        o item da faixa rápido**) — print estático não prova interação
 - [ ] 8. Antes do fecho: listar o que ainda falta vs o design **e** vs o
         vídeo de fluxo. Não esperar “falta mais nada?”
 - [ ] 9. Sem essa comparação, a tela não está pronta — lint verde não conta
@@ -123,6 +124,14 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
     solta com o container.
 18. **Variante do design é escopo.** Se o Figma tem estados (tipo A /
     tipo B no clique), os dois entram na entrega. Default sozinho = falta.
+19. **Troca rápida de mídia não trava o load.** `onLoad` / `onError` / rAF
+    da URL abortada são ignorados. Overlay/skeleton some se a URL pronta
+    não for a pintada nem a que está entrando — volta o quadro anterior,
+    não o cinza eterno.
+20. **URL de sessão não é identidade.** `blob:` / object URL morre no
+    refetch/unmount. O id do arquivo é a chave; o merge do mesmo id
+    **atualiza** a URL, não só acrescenta chave nova. Thumb e canvas
+    leem a URL viva. Não persistir `blob:` no payload (`contrato-api`).
 
 ## Anti-padrões
 
@@ -142,6 +151,9 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
 - Pontos/marcadores que saltam ao expandir porque mediram o box, não a mídia
 - Gerar ilustração com a URL do Figma aberta, sem puxar o asset
 - Declarar drag/upload/expandir ok só com print, sem exercer o gesto
+- Troca lenta de uma thumb e declarar o fade pronto
+- Merge do mesmo id que ignora URL nova; persistir `blob:` no backend
+- Thumb com X e mídia vazia (URL revogada ainda no estado)
 
 ## Evidência no fecho
 

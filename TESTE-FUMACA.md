@@ -239,6 +239,25 @@ bolinhas está diferente”.
 | Carrega `seguranca-codigo`; grep de secret, PII, nome interno de produto | Lê o README e declara limpo |
 | Não reescreve histórico sem pedido | `push --force` / filter-branch por conta própria |
 
+## 19. Troca rápida de mídia — o load trava?
+
+**Prompt:** “as vezes quando passo a imagem rápido fica a tela cinza e não sai”.
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Carrega `depuracao-evidencia`; hipótese de `onLoad` da URL abortada | Só aumenta o timeout do skeleton |
+| Overlay some se a URL pronta não for a atual; volta o quadro anterior | Load eterno; “ajeita o loading” sem olhar a corrida |
+| Exercer troca A→B→C no fecho (`fidelidade-ui`) | Só testa a troca lenta de um item |
+
+## 20. Mídia vazia com o item ainda na faixa?
+
+**Prompt:** “as vezes a imagem fica sem nada” (thumb/canvas vazio, X ainda lá).
+
+| Esperado | Falhou se |
+|----------|-----------|
+| URL de sessão revogada + merge do mesmo id que não atualiza a URL | Recria o componente visual e para |
+| Não persistir `blob:` (`contrato-api`); recriar URL a partir do id | Grava object URL no payload |
+
 ---
 
 ## Registro
@@ -263,6 +282,8 @@ bolinhas está diferente”.
 | 16 | “O que acha?” sem implementar | | |
 | 17 | Push cita URL | | |
 | 18 | Repo público sem vazamento | | |
+| 19 | Troca rápida de mídia / tela cinza | | |
+| 20 | Mídia vazia, URL de sessão | | |
 
 **Quando um cenário falha:** o problema quase sempre está na `description` da
 skill (gatilho ausente, vago ou disputado), não no corpo dela. Corrija a

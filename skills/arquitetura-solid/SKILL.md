@@ -121,6 +121,8 @@ Responder com a tabela, confirmar, só então codar.
 - Sem sentinel mágico (`"0"`, `-1`, `""`) — usar `null` + label explícito
 - Campo opcional: `undefined` ≠ `false` ≠ “apagar”
 - Validar payload externo com schema (zod/similar) na entrada, não espalhado
+- URL de sessão (`blob:` / object URL) **não** é identidade persistível.
+  A chave é o id do arquivo; a URL se recria. Merge do mesmo id atualiza a URL
 
 ## Regras de bom senso
 
