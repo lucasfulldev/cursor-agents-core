@@ -68,6 +68,9 @@ regra de negócio não escrita.
 - [ ] 7. Ambiguidades listadas → perguntar antes de codar
 - [ ] 8. Identidade vs tela de uso: atributo de cadastro (cor, código) não se
         desenha primeiro na tela operacional — “onde mora?” antes de codar
+- [ ] 9. Variantes do design (tipo A vs tipo B no clique) entram no aceite
+- [ ] 10. Vídeo de fluxo anexado: listar os passos visíveis como aceite
+- [ ] 11. Fluxo irmão (modal, upload, anexos): reusar, não redesenhar
 ```
 
 Regras: mais de uma entrega de valor no pedido → propor **fatiar**; não escrever
@@ -76,8 +79,10 @@ o “como” técnico no enunciado; critério que não dá para verificar não �
 Fontes, na ordem:
 
 1. Spec da task (tracker, doc do produto, aceite escrito) quando houver
-2. Código e contratos já existentes nos repos envolvidos
-3. Base de conhecimento do time, se estiver configurada
+2. Figma/print **e** vídeo de fluxo, se o usuário anexou
+3. Tela irmã no produto (layout **e** fluxo: modal, upload, anexos)
+4. Código e contratos já existentes nos repos envolvidos
+5. Base de conhecimento do time, se estiver configurada
 
 Saída alimenta `arquitetura-solid` (contrato) e `testes-e-bordas` (casos).
 
@@ -231,6 +236,8 @@ reivindicarem o mesmo gatilho, a escolha vira sorteio.
 | Figma, layout, espaçamento, alinhamento, “não está igual ao Figma”, tela **nova**/card/tabela visual, ícone de aba, “ícone sumiu”, “ajeite o load”, skeleton, “ficou em cima”, faixa/scroll | `fidelidade-ui` | “Tela lenta” é `performance-app`; label isolado sem print não entra; “onde mora no cadastro?” é `arquitetura-solid` |
 | “onde seria interessante colocar”, “não seria no cadastro?”, identidade vs tela de uso | `arquitetura-solid` | Overlay/canto de controle visível é `fidelidade-ui` |
 | “não tá saindo da lista”, sumiu numa superfície e ficou na outra | `depuracao-evidencia` | Não é polish de `fidelidade-ui` — é mutação que não atualiza todas as vistas |
+| “mesmo modal”, upload que não vai pra anexos, fluxo do módulo irmão | `fidelidade-ui` | Contrato do tipo de arquivo novo é `contrato-api` + `senior-banco-dados` |
+| PATCH apagou campo que o cliente não mandou, omitido virou `null` | `contrato-api` | `undefined` pintado na UI é `fidelidade-ui` (mapa de label) |
 | CREATE TYPE, Prisma `enum` no schema, tipo SQL novo | `senior-banco-dados` | Union TS / `@IsIn` não é enum de banco |
 
 Ao criar skill nova: se a description repetir gatilho de outra, qualificar

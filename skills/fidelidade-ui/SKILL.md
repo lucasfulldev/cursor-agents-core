@@ -6,8 +6,10 @@ description: >-
   quando houver Figma, print, layout, alinhamento, espaçamento, tela nova, card,
   tabela visual, empty state, ícone de aba, SVG custom, expandir, “ícone sumiu”,
   load, skeleton, “ajeite o load”, scroll da faixa, sombra, “ficou em cima”,
-  hit area, ou o usuário disser que não está igual ao Figma. Não usar para
-  API/SQL sem UI, nem para “tela lenta” (isso é performance-app).
+  hit area, cursor, undefined, mesmo modal, “ficou por baixo”, suave,
+  “não tá scrollando”, pontos ao expandir, ou o usuário disser que não está
+  igual ao Figma. Não usar para API/SQL sem UI, nem para “tela lenta”
+  (isso é performance-app).
 ---
 
 # Fidelidade de UI
@@ -20,8 +22,10 @@ sem comparar com o design.
 do card, sem divisor, canvas grande demais, busca mais estreita que o card,
 gaps mistos no mesmo bloco, expandir só resetava zoom, tabela reescrita em
 vez da aba vizinha, ícone do Figma virando SVG sem `width`/`height` (some
-no tab). Depois: layout “pronto” vazio enquanto a imagem decodifica; faixa que
-encolhe em vez de rolar; controle novo em cima de outro; hit area de um pixel.
+no tab). Depois: layout “pronto” vazio; faixa que encolhe; controle novo em
+cima de outro; hit area de um pixel; tabela irmã reusada mas modal/upload
+não; `undefined` na tela; X por baixo da mídia; upload sem focar o item;
+overlay que sai do lugar no expandir.
 
 ## Quando usar
 
@@ -64,9 +68,10 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
 
 1. **O design ganha.** “Quase igual” é erro. Usar width/height/gap do nó, não
    palpite (`mb-8` num bloco em que o resto é `24px`).
-2. **Reutilizar antes de clonar.** Tabela, empty state, chrome de tabs e
-   ações da tela irmã entram como estão. Cópia com `padding`/`bg` diferentes
-   é componente novo sem pedido.
+2. **Reutilizar o fluxo irmão, não só o visual.** Tabela, empty state, tabs,
+   **e** modal de upload, lista de anexos, tipo de arquivo, ações da linha.
+   “Igual ao módulo vizinho” inclui o que acontece no clique. Cópia com
+   `padding`/`bg` diferentes é componente novo sem pedido.
 3. **Grupo visual, um ritmo.** Título → tabs → texto de ajuda no mesmo stack
    e no mesmo gap. Não misturar `mb-8` com `gap-4` no mesmo bloco.
 4. **Campo acima da coluna tem a largura da coluna.** Busca sobre um card
@@ -86,16 +91,34 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
    enquanto o asset base ainda não pintou é bug. Skeleton (o da tela irmã)
    até o `onLoad`/frame medido; overlay só depois disso.
 10. **Faixa que transborda rola, não encolhe.** Item mantém o tamanho do
-    design. Ação fixa (adicionar) permanece visível. Affordance de “tem
-    mais” (sombra/fade) só no eixo que transborda. Sem scroll no eixo
-    que não transborda. Desktop: chevron se o irmão tiver; mobile: o
-    gesto do irmão (ex. long-press), não inventar.
+    design. Ação fixa (adicionar) permanece visível e **alinhada** com a
+    faixa. Affordance de “tem mais” (sombra/fade) só no eixo que
+    transborda — e tem que ser visível com os itens reais (N thumbs).
+    Sem scroll no eixo que não transborda. Desktop: chevron se o irmão
+    tiver; mobile: o gesto do irmão (ex. long-press), não inventar.
 11. **Controle novo não cobre controle existente.** Cada overlay tem
     canto/slot próprio. Se o usuário aponta um canto, usar esse canto.
-    Área clicável = o botão visível, não um pixel do ícone.
+    Área clicável = o botão visível, não um pixel do ícone. Pedido de
+    usabilidade fora do Figma (zoom, setas) não pula esta regra.
 12. **Duas superfícies, o mesmo id.** Upload, exclusão e reorder têm que
     atualizar **todas** as listas que mostram o item (tabela, faixa,
     modal). Sumir de uma e ficar na outra é bug, não “estado derivado”.
+13. **Nunca pintar `undefined`/`null` como texto.** Falta de label de
+    tipo/status é buraco de contrato ou de mapa — empty state do irmão,
+    não a palavra `undefined`.
+14. **Gesto = cursor e ghost.** Arrastar mostra mão fechada (ou o cursor
+    do irmão). O preview identifica o item; preview genérico não conta.
+15. **Chrome acima da mídia.** Fechar, expandir, zoom: `z-index` acima do
+    conteúdo. Controle “por baixo” da imagem é bug.
+16. **Depois do upload, focar o que entrou.** Selecionar o primeiro do
+    lote, rolar a faixa até ele, transição suave (crossfade/scroll) —
+    não snap e não deixar o item fora da viewport.
+17. **Overlay sobrevive a resize.** Expandir, tela cheia, zoom: posição
+    relativa ao quadro **pintado** (`object-fit`/letterbox), medida
+    depois do layout. Tamanho do marcador é o px do design, não escala
+    solta com o container.
+18. **Variante do design é escopo.** Se o Figma tem estados (tipo A /
+    tipo B no clique), os dois entram na entrega. Default sozinho = falta.
 
 ## Anti-padrões
 
@@ -109,6 +132,10 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
 - Encolher item da faixa para caber tudo na viewport
 - Zoom/ação nova no mesmo canto das setas já existentes
 - Esperar o usuário perguntar “falta mais nada?” para conferir o Figma
+- Reusar a tabela irmã e inventar outro modal/upload
+- `undefined` visível; X/expandir por baixo da imagem
+- Upload que não seleciona nem rola até o item novo
+- Pontos/marcadores que saltam ao expandir porque mediram o box, não a mídia
 
 ## Evidência no fecho
 

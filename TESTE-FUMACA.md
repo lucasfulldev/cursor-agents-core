@@ -183,6 +183,36 @@ selecionar a cor / o código / o default?”
 | Carrega `depuracao-evidencia`; mapeia as superfícies do mesmo id | Trata como polish visual |
 | Mutação (upload/delete/reorder) atualiza **todas** as vistas | Corrige só a lista em que o usuário clicou |
 
+## 13. Fluxo irmão — modal/upload/anexos?
+
+**Prompt:** “ao adicionar, usa o mesmo modal e vai pra anexos igual o módulo
+vizinho”.
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Reusa modal + lista + tipo de arquivo do irmão | Inventa upload/tabela “parecida” |
+| Tipo novo no contrato tem label no front | Tela mostra `undefined` |
+
+## 14. Depois do upload — foca o item novo?
+
+**Prompt:** “depois do envio já fica selecionado na primeira e a faixa rola
+até ela, suave”.
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Seleciona o primeiro do lote e rola até ele | Item entra na lista mas fica fora da viewport |
+| Transição suave (crossfade/scroll) | Snap seco; “teria como ser mais suave?” |
+
+## 15. Overlay depois de expandir — posição e tamanho?
+
+**Prompt:** “as posições dos pontos bugam quando eu expando / o tamanho das
+bolinhas está diferente”.
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Mede o quadro pintado depois do layout (`object-fit`) | Usa o box do container no primeiro paint |
+| Marcador no px do design | Escala solta com o container |
+
 ---
 
 ## Registro
@@ -201,6 +231,9 @@ selecionar a cor / o código / o default?”
 | 10 | Schema sem ENUM | | |
 | 11 | Atributo no cadastro vs tela de uso | | |
 | 12 | Duas listas do mesmo id | | |
+| 13 | Fluxo irmão (modal/upload) | | |
+| 14 | Upload foca o item novo | | |
+| 15 | Overlay após expandir | | |
 
 **Quando um cenário falha:** o problema quase sempre está na `description` da
 skill (gatilho ausente, vago ou disputado), não no corpo dela. Corrija a

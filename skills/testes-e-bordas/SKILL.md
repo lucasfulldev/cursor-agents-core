@@ -49,7 +49,7 @@ Roda **antes ou junto** da implementação; nunca só no final.
 | Booleano/opcional | `true`/`false`/`undefined` — e `undefined` ≠ `false` |
 | ID/relação | inexistente, sem permissão, deletado, FK órfã |
 | Externo (API/DB) | timeout, 4xx, 5xx, resposta parcial, retry, idempotência |
-| UI | loading, vazio, erro, sem permissão, texto longo, mobile, overlay só depois do asset, duas listas do mesmo id |
+| UI | loading, vazio, erro, sem permissão, texto longo, mobile, overlay só depois do asset, duas listas do mesmo id, `undefined` visível, overlay depois de expandir, upload foca o item novo |
 
 ## Nível de teste (o mais barato que pega o bug)
 

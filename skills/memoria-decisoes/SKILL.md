@@ -63,6 +63,11 @@ Gatilho: o mesmo tipo de problema aparece **duas vezes** em revisões.
 Regra vaga não entra. `"tratar bem os nulos"` não é regra;
 `"campo ausente vira null + label explícito, nunca 0 ou string vazia"` é.
 
+Promover a partir de uma conversa longa: contar **tipos** de pergunta, não
+só o cluster maior. Cada tipo com 2+ ocorrências vira regra no skill dono.
+Parar no topo (layout) e ignorar upload/`undefined`/resize é a promoção
+incompleta.
+
 ## Regras
 
 1. ADR registra **decisão**, não narrativa de implementação.

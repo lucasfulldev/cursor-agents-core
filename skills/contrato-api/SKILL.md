@@ -5,9 +5,9 @@ description: >-
   consumidores, classifica mudança como aditiva ou breaking, define rollout e
   valida as duas pontas. Use ao alterar payload, DTO, endpoint, query param já em
   uso, mudar ou remover campo,
-  enum, resposta de erro, ou quando o front não recebe/envia o campo esperado,
-  integração entre repos, versionamento. Não usar para mudança interna que não
-  cruza fronteira de serviço.
+  enum, resposta de erro, PATCH que apaga campo omitido, ou quando o front
+  não recebe/envia o campo esperado, integração entre repos, versionamento.
+  Não usar para mudança interna que não cruza fronteira de serviço.
 ---
 
 # Contrato de API
@@ -68,6 +68,12 @@ listando os repos tocados.
 - **Paginação**: nome dos params, base 0/1, total vs hasNext
 - **Idempotência** em POST que pode ser reenviado
 - **Nulabilidade**: campo opcional no back precisa de default no front
+- **PATCH / update**: omitir campo (`undefined`) **não** vira `null`.
+  Transform que mapeia ausente → `null` apaga dado que o cliente não mandou
+- **Campo aditivo**: todo consumidor da mesma entidade (cadastro, lista
+  operacional, detalhe) passa a ler o campo — grep, não memória
+- **Label de tipo/status**: valor novo no contrato tem mapa no front;
+  senão a UI mostra `undefined`
 - **Data/hora**: fuso e formato (ISO com offset) combinados nas duas pontas
 - Tipos do consumidor gerados/duplicados manualmente → atualizar junto
 
@@ -77,6 +83,7 @@ listando os repos tocados.
 2. Semântica muda → **nome muda**. Reaproveitar nome esconde bug.
 3. Consumidor nunca confia em campo obrigatório sem tratar ausência.
 4. Antes de remover algo, provar que ninguém lê (busca nos repos, não memória).
+5. `undefined` no PATCH = “não mexer”. `null` = “apagar”. Não colapsar os dois.
 
 ## Relação com outras skills
 

@@ -5,8 +5,9 @@ description: >-
   confirmar a causa e só então corrigir. É a porta de entrada de bug, erro,
   stacktrace, tela em branco, dado errado, comportamento inesperado, "não
   funciona", "parou de funcionar", "não tá saindo da lista", duas listas do
-  mesmo item. O teste que trava a regressão vem de testes-e-bordas. Não usar
-  para implementar feature nova.
+  mesmo item, "undefined" na tela, pontos que saltam ao expandir. O teste que
+  trava a regressão vem de testes-e-bordas. Não usar para implementar feature
+  nova.
 ---
 
 # Depuração por evidência
@@ -51,6 +52,8 @@ a causa estar **confirmada**.
 | Erro engolido | Procurar `catch` vazio, `?.` mascarando, fallback silencioso |
 | Saiu de uma lista e ficou na outra | Mapear as superfícies que leem o mesmo id; a mutação atualiza **todas** |
 | Overlay/ponto no lugar errado depois de load | Medir o quadro **depois** do `onLoad`/`ResizeObserver`, não no primeiro paint |
+| Overlay/ponto salta ao expandir/zoom | Medir o quadro **pintado** (object-fit/letterbox), não o container |
+| UI mostra a palavra `undefined` | Mapa de tipo/status incompleto; contrato sem o valor ou front sem label |
 
 ## Regras
 
