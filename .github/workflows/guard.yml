@@ -1,0 +1,14 @@
+name: Guard
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check-core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Núcleo genérico
+        run: bash scripts/check-core.sh

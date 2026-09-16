@@ -1,0 +1,26 @@
+name: Buraco no núcleo
+description: O agente não disparou, escolheu a skill errada ou repetiu um erro já documentado
+title: "[skill] "
+labels: []
+body:
+  - type: textarea
+    id: prompt
+    attributes:
+      label: O que você pediu
+      description: Prompt (ou trecho) que o agente recebeu.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: O que deveria acontecer
+      description: Qual skill/regra deveria entrar, e o que ela manda fazer.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: O que aconteceu
+      description: Skill que disparou (ou nenhuma) e o erro concreto.
+    validations:
+      required: true

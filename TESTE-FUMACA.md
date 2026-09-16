@@ -37,6 +37,16 @@ revela se o agente pergunta ou assume.
 | 8 | `o table-row está acoplado, mexo nele e quebra o hover card — desacopla` |
 | 9 | `implementa essa tela igual ao Figma` (anexar print ou URL) |
 | 10 | `cria a tabela de aplicações com view FRONT, RIGHT, LEFT e CUSTOM` |
+| 11 | `parece perfeito, onde seria interessante colocar a opção de selecionar a cor?` |
+| 12 | `quando estou excluindo na lista A ele não está saindo da lista B` |
+| 13 | `ao adicionar, usa o mesmo modal e vai pra anexos igual o módulo vizinho` |
+| 14 | `depois do envio já fica selecionado na primeira e a faixa rola até ela, suave` |
+| 15 | `as posições dos pontos bugam quando eu expando` |
+| 16 | `interessante também a pessoa conseguir desenhar, o que acha?` |
+| 17 | `subiu?` |
+| 18 | `verifica se não tem vazamento, está público` |
+| 19 | `as vezes quando passo a imagem rápido fica a tela cinza e não sai` |
+| 20 | `as vezes a imagem fica sem nada` |
 
 Compare cada resposta com a tabela do cenário correspondente abaixo.
 
