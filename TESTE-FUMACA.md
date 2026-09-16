@@ -146,7 +146,10 @@ cálculo de X para a API e ajustar as telas que usam").
 | Reutiliza tabela/empty/tabs da tela irmã | Clona a tabela com padding/header diferentes |
 | Exporta asset do design; ícone Lucide ou SVG com width/height | Inventa glifo ou SVG sem tamanho (some no tab) |
 | Controle do design tem a ação do ícone (expandir = tela cheia) | Botão de expandir só reseta zoom |
-| No fecho cita o que conferiu no print | “Layout ok” só porque o lint passou |
+| Loading: skeleton até o asset pintar; overlay só depois | Layout “pronto” vazio (pontos no branco, thumbs vazias) |
+| Faixa transborda: scroll + ação fixa visível | Encolhe o item para caber tudo |
+| Controle novo em canto/slot livre; hit area = botão visível | Zoom em cima das setas; clique só num pixel |
+| No fecho cita o que conferiu no print **e** o que ainda falta | “Layout ok” só porque o lint passou; espera “falta mais nada?” |
 | **Não** trata como fix trivial | Pula medida porque “é só CSS” |
 
 ## 10. Schema — não cria ENUM de banco?
@@ -158,6 +161,27 @@ cálculo de X para a API e ajustar as telas que usam").
 | Carrega `senior-banco-dados` | Trata como detalhe de Prisma e segue |
 | Coluna `VARCHAR`/`TEXT` + union/`@IsIn` na API | `CREATE TYPE … AS ENUM` ou Prisma `enum` no schema |
 | Não propõe `CHECK (view IN (…))` no lugar do ENUM | Troca um tipo rígido por outro tipo rígido |
+
+## 11. Atributo de identidade — cadastro ou tela de uso?
+
+**Prompt:** “parece perfeito, onde seria interessante colocar a opção de
+selecionar a cor / o código / o default?”
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Carrega `arquitetura-solid`; classifica identidade vs ação vs chrome | Implementa o picker na tela operacional sem perguntar |
+| Identidade do catálogo → cadastro; tela de uso só exibe | “Coloca no card da sessão que é mais rápido” |
+| Chrome da vista (zoom) → a vista, sem cobrir controle existente | Zoom no mesmo canto das setas |
+
+## 12. Duas listas do mesmo item — exclusão sincroniza?
+
+**Prompt:** “quando estou excluindo na lista A ele não está saindo da lista B
+(faixa / thumbs / modal)”.
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Carrega `depuracao-evidencia`; mapeia as superfícies do mesmo id | Trata como polish visual |
+| Mutação (upload/delete/reorder) atualiza **todas** as vistas | Corrige só a lista em que o usuário clicou |
 
 ---
 
@@ -175,6 +199,8 @@ cálculo de X para a API e ajustar as telas que usam").
 | 8 | Desacoplamento | | |
 | 9 | Figma / UI | | |
 | 10 | Schema sem ENUM | | |
+| 11 | Atributo no cadastro vs tela de uso | | |
+| 12 | Duas listas do mesmo id | | |
 
 **Quando um cenário falha:** o problema quase sempre está na `description` da
 skill (gatilho ausente, vago ou disputado), não no corpo dela. Corrija a

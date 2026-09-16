@@ -16,7 +16,7 @@ Seguir `orquestracao-agentes`: núcleo + transversais por risco + domínio se ca
 | Design (módulo/contrato novo) | `arquitetura-solid` |
 | Bordas e testes | `testes-e-bordas` |
 | Implementação | `codigo-limpo` |
-| UI / Figma (tela, layout, espaçamento) | `fidelidade-ui` |
+| UI / Figma (tela, layout, espaçamento, load, faixa) | `fidelidade-ui` |
 | Verificação executável | `gates-verificacao` |
 | Fecho | `revisao-pos-implementacao` |
 

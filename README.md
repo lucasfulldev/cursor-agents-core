@@ -25,7 +25,7 @@ rules/      → ~/.cursor/rules/
 | Design | `arquitetura-solid` | Contrato, fronteira, SOLID, tipos |
 | Bordas e testes | `testes-e-bordas` | Matriz de casos + regressão |
 | Implementação | `codigo-limpo` | Clean Code, diff mínimo |
-| UI / Figma | `fidelidade-ui` | Medida do design, reuso, sem inventar asset |
+| UI / Figma | `fidelidade-ui` | Medida do design, reuso, loading, overflow, sem inventar asset |
 | Verificação | `gates-verificacao` | Typecheck/lint/test com evidência |
 | Fecho | `revisao-pos-implementacao` | Revisão automática do diff |
 

@@ -45,11 +45,11 @@ Roda **antes ou junto** da implementação; nunca só no final.
 | String | `''`, espaços, acentos, muito longa, numérica (`"0"`), `null`/`undefined` |
 | Número | `0`, negativo, fração, limite, `NaN`, string numérica, overflow |
 | Data | ausente, inválida, timezone/UTC, futuro, ano < 1000, fim de mês, bissexto |
-| Lista | vazia, 1 item, N itens, duplicados, ordem, paginação, limite |
+| Lista | vazia, 1 item, N itens, duplicados, ordem, paginação, limite, remoção que também aparece em outra lista |
 | Booleano/opcional | `true`/`false`/`undefined` — e `undefined` ≠ `false` |
 | ID/relação | inexistente, sem permissão, deletado, FK órfã |
 | Externo (API/DB) | timeout, 4xx, 5xx, resposta parcial, retry, idempotência |
-| UI | loading, vazio, erro, sem permissão, texto longo, mobile |
+| UI | loading, vazio, erro, sem permissão, texto longo, mobile, overlay só depois do asset, duas listas do mesmo id |
 
 ## Nível de teste (o mais barato que pega o bug)
 

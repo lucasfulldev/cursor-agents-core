@@ -4,8 +4,9 @@ description: >-
   Investiga bug por evidência: reproduzir, formular hipótese, instrumentar,
   confirmar a causa e só então corrigir. É a porta de entrada de bug, erro,
   stacktrace, tela em branco, dado errado, comportamento inesperado, "não
-  funciona", "parou de funcionar". O teste que trava a regressão vem de
-  testes-e-bordas. Não usar para implementar feature nova.
+  funciona", "parou de funcionar", "não tá saindo da lista", duas listas do
+  mesmo item. O teste que trava a regressão vem de testes-e-bordas. Não usar
+  para implementar feature nova.
 ---
 
 # Depuração por evidência
@@ -18,6 +19,7 @@ a causa estar **confirmada**.
 - Erro, exceção, stacktrace, log suspeito
 - Resultado errado na tela ou no dado
 - Regressão (“funcionava antes”)
+- Item some de uma lista e permanece em outra (tabela vs faixa vs modal)
 
 ## Quando NÃO aplicar
 
@@ -47,6 +49,8 @@ a causa estar **confirmada**.
 | Intermitente | Buscar assincronia, cache, corrida, ordenação, retry |
 | “Nada acontece” | Verificar se o handler roda; log na entrada antes de suspeitar da regra |
 | Erro engolido | Procurar `catch` vazio, `?.` mascarando, fallback silencioso |
+| Saiu de uma lista e ficou na outra | Mapear as superfícies que leem o mesmo id; a mutação atualiza **todas** |
+| Overlay/ponto no lugar errado depois de load | Medir o quadro **depois** do `onLoad`/`ResizeObserver`, não no primeiro paint |
 
 ## Regras
 
@@ -61,3 +65,4 @@ a causa estar **confirmada**.
 - `testes-e-bordas` — teste vermelho como prova e depois como regressão
 - `gates-verificacao` — confirma que a correção não quebrou o resto
 - `codigo-limpo` — higiene da correção
+- `fidelidade-ui` — overflow/loading da faixa; a sincronia das duas listas é aqui

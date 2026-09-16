@@ -80,7 +80,12 @@ Delegar detalhe ao `codigo-limpo`. Focar em:
   (achado crítico de segurança **bloqueia** o fecho)
 - Diff de UI (Figma, layout, tabela, espaçamento, empty state)? →
   `fidelidade-ui`. Asset inventado, SVG sem width/height, componente irmão
-  ignorado ou controle do design ausente = **importante** (corrigir agora)
+  ignorado, controle do design ausente, loading que finge tela pronta,
+  faixa que encolhe, controle novo em cima de outro = **importante**
+  (corrigir agora). Fecho de UI lista o que ainda falta vs o design —
+  não esperar “falta mais nada?”
+- Duas superfícies do mesmo id (tabela vs faixa) dessincronizadas após
+  upload/exclusão = **importante** (`depuracao-evidencia` + correção agora)
 - Mudou payload que outro serviço/front consome? → `contrato-api`
 - Diff de schema/migration? → `senior-banco-dados`. `CREATE TYPE … AS ENUM`
   ou Prisma `enum` novo = **importante** (VARCHAR + validação na API agora)

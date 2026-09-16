@@ -62,10 +62,12 @@ regra de negócio não escrita.
 - [ ] 1. Ator e valor: quem usa e para quê
 - [ ] 2. Escopo: o que entra e, explicitamente, o que fica fora
 - [ ] 3. Regras de negócio: limites, permissões, formatos, status
-- [ ] 4. Caminho de erro e estado vazio (não só o caminho feliz)
+- [ ] 4. Caminho de erro, estado vazio **e loading** (não só o caminho feliz)
 - [ ] 5. Dependências: repos, serviços, terceiros
 - [ ] 6. Critérios de aceite verificáveis (cada um vira caso em `testes-e-bordas`)
 - [ ] 7. Ambiguidades listadas → perguntar antes de codar
+- [ ] 8. Identidade vs tela de uso: atributo de cadastro (cor, código) não se
+        desenha primeiro na tela operacional — “onde mora?” antes de codar
 ```
 
 Regras: mais de uma entrega de valor no pedido → propor **fatiar**; não escrever
@@ -204,7 +206,7 @@ Sem gates, sem fecho
 ## Frases que disparam
 
 - Núcleo: feature, bug, implementa, arquitetura, SOLID, teste, “compila?”, revise,
-  Figma, layout, espaçamento, “não está igual”
+  Figma, layout, espaçamento, “não está igual”, “ajeite o load”, “onde colocar”
 - Transversal: permissão, LGPD, CPF, segredo, payload, DTO, contrato, commit, PR
 - Sob demanda: lento, N+1, log, monitoramento, stacktrace, horas, sizing
 - Domínio: nomes do produto/repo do pack instalado, SQL, deploy
@@ -226,7 +228,9 @@ reivindicarem o mesmo gatilho, a escolha vira sorteio.
 | ordem dos passos, “por onde começo”, entrega em fases | `orquestracao-agentes` (estágio 0.6) | Split no commit é `git-pr`, e chega tarde |
 | log, correlação, alerta | `observabilidade` | PII em log é `seguranca-codigo` |
 | lento, N+1, timeout | `performance-app` | Query lenta em banco é `senior-banco-dados` |
-| Figma, layout, espaçamento, alinhamento, “não está igual ao Figma”, tela **nova**/card/tabela visual, ícone de aba, “ícone sumiu” | `fidelidade-ui` | “Tela lenta” é `performance-app`; label isolado sem print não entra |
+| Figma, layout, espaçamento, alinhamento, “não está igual ao Figma”, tela **nova**/card/tabela visual, ícone de aba, “ícone sumiu”, “ajeite o load”, skeleton, “ficou em cima”, faixa/scroll | `fidelidade-ui` | “Tela lenta” é `performance-app`; label isolado sem print não entra; “onde mora no cadastro?” é `arquitetura-solid` |
+| “onde seria interessante colocar”, “não seria no cadastro?”, identidade vs tela de uso | `arquitetura-solid` | Overlay/canto de controle visível é `fidelidade-ui` |
+| “não tá saindo da lista”, sumiu numa superfície e ficou na outra | `depuracao-evidencia` | Não é polish de `fidelidade-ui` — é mutação que não atualiza todas as vistas |
 | CREATE TYPE, Prisma `enum` no schema, tipo SQL novo | `senior-banco-dados` | Union TS / `@IsIn` não é enum de banco |
 
 Ao criar skill nova: se a description repetir gatilho de outra, qualificar

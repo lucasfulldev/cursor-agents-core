@@ -5,8 +5,9 @@ description: >-
   entre camadas, contratos de entrada/saída/erro e tipos que impedem estado
   inválido. Use ao criar módulo/feature nova, desenhar contrato novo, quebrar
   acoplamento, ou quando o usuário mencionar arquitetura, SOLID, interface,
-  injeção de dependência, desacoplar, "onde colocar essa regra". Desenha contrato
-  novo; alterar contrato já consumido é contrato-api. Não usar em fix pontual de
+  injeção de dependência, desacoplar, "onde colocar essa regra", "onde seria
+  interessante colocar", cadastro vs tela de uso. Desenha contrato novo;
+  alterar contrato já consumido é contrato-api. Não usar em fix pontual de
   uma linha nem em legado que só recebe patch mínimo.
 ---
 
@@ -24,6 +25,8 @@ Depois desta skill: implementar com `codigo-limpo`.
 - Acoplamento doendo: “mexo aqui e quebra lá” → seção **Desacoplar código que já
   existe** (workflow diferente do de código novo)
 - Regra de negócio nova que precisa de lugar certo
+- “Onde seria interessante colocar” um atributo (cor, código, default) —
+  identidade do cadastro vs ação da tela de uso vs chrome da vista
 
 ## Quando NÃO aplicar
 
@@ -37,6 +40,8 @@ Depois desta skill: implementar com `codigo-limpo`.
 - [ ] 1. Enunciar o caso de uso em 1 frase (quem pede, o que recebe, o que sai)
 - [ ] 2. Definir contrato: entrada, saída, erros possíveis
 - [ ] 3. Escolher a fronteira: onde mora a regra, o que é adaptador
+- [ ] 3b. Se o pedido for “onde colocar X”: classificar identidade /
+        ação por sessão / chrome da vista (tabela abaixo)
 - [ ] 4. Modelar tipos que impeçam estado inválido (union/`as const` na
         aplicação; não ENUM SQL — `senior-banco-dados`)
 - [ ] 5. Listar dependências e o que precisa ser invertido (I/O, tempo, random)
@@ -94,6 +99,20 @@ Adaptadores               → HTTP, DB, cache, storage, clock, e-mail
 Regra: **regra de negócio não importa framework**. Se precisa do `Date.now()`,
 do banco ou de rede, isso entra como dependência (parâmetro, port, provider).
 
+## Onde mora o atributo
+
+Perguntar **antes** de desenhar o controle. Não implementar na tela operacional
+e migrar depois.
+
+| Natureza | Mora em | A tela operacional |
+|----------|---------|--------------------|
+| Identidade do item de catálogo (cor, código, unidade padrão) | Cadastro / config da entidade | Só **exibe** (fallback só se o cadastro ainda não tiver valor) |
+| Ação por sessão/documento (quantidade, observação, ponto no canvas) | Formulário / sheet da operação | Edita |
+| Chrome da vista (zoom, pan, tela cheia) | A própria vista | Edita; **não** cobre controle já existente (`fidelidade-ui`) |
+
+“Parece perfeito, onde colocar X?” não é convite para chutar a tela da vez.
+Responder com a tabela, confirmar, só então codar.
+
 ## Tipos que evitam bug
 
 - União discriminada em vez de vários booleanos soltos
@@ -129,3 +148,4 @@ Bordas:      lista para testes-e-bordas
 - `contrato-api` — quando a costura cruza serviço ou front↔API
 - `git-pr` — um commit por etapa (preparação → comportamento → limpeza)
 - `orquestracao-agentes` — pipeline do núcleo e plano de execução
+- `fidelidade-ui` — chrome da vista (canto, hit area); esta skill decide **onde mora** o atributo

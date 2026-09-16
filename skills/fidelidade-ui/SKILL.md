@@ -5,8 +5,9 @@ description: >-
   componente já existente no produto e não inventa asset nem espaçamento. Use
   quando houver Figma, print, layout, alinhamento, espaçamento, tela nova, card,
   tabela visual, empty state, ícone de aba, SVG custom, expandir, “ícone sumiu”,
-  ou o usuário disser que não está igual ao Figma. Não usar para API/SQL sem UI,
-  nem para “tela lenta” (isso é performance-app).
+  load, skeleton, “ajeite o load”, scroll da faixa, sombra, “ficou em cima”,
+  hit area, ou o usuário disser que não está igual ao Figma. Não usar para
+  API/SQL sem UI, nem para “tela lenta” (isso é performance-app).
 ---
 
 # Fidelidade de UI
@@ -19,7 +20,8 @@ sem comparar com o design.
 do card, sem divisor, canvas grande demais, busca mais estreita que o card,
 gaps mistos no mesmo bloco, expandir só resetava zoom, tabela reescrita em
 vez da aba vizinha, ícone do Figma virando SVG sem `width`/`height` (some
-no tab).
+no tab). Depois: layout “pronto” vazio enquanto a imagem decodifica; faixa que
+encolhe em vez de rolar; controle novo em cima de outro; hit area de um pixel.
 
 ## Quando usar
 
@@ -27,12 +29,14 @@ no tab).
 - Tela, card, tabela, empty state, espaçamento, alinhamento
 - Controle visível no design (expandir, mover, switch, tabs)
 - Usuário diz que “não está igual”, “falta o divisor”, “distâncias diferentes”
+- Load/skeleton, overflow de faixa, controle “ficou em cima” de outro
 
 ## Quando NÃO usar
 
 - API, SQL, contrato, backend sem superfície visual
 - Troca de um texto/label **sem** Figma nem print
 - “Tela lenta” → `performance-app`
+- “Onde mora o atributo no cadastro vs nesta tela?” → `arquitetura-solid`
 
 Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
 
@@ -40,7 +44,8 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
 
 ```
 - [ ] 1. Achar a tela irmã no mesmo produto (aba/módulo vizinho) e listar o
-        que já existe: tabela, empty state, tabs, sheet, botão, header
+        que já existe: tabela, empty state, tabs, sheet, botão, header,
+        Loading/Skeleton, faixa/strip, modal de anexo
 - [ ] 2. Ler o design: metadata (x, y, width, height, gap) + screenshot.
         Anotar as medidas que viram CSS — não chutar
 - [ ] 3. Exportar asset do design. Proibido inventar SVG/ilustração que o
@@ -49,8 +54,10 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
 - [ ] 4. Mapear cada controle do design → ação real (nome da camada + ícone)
 - [ ] 5. Implementar com as medidas. Um grupo visual = um gap
 - [ ] 6. Comparar implementação vs print: colunas alinhadas, divisor, tamanho,
-        campo vs card, controles presentes
-- [ ] 7. Sem essa comparação, a tela não está pronta — lint verde não conta
+        campo vs card, controles presentes, loading, overflow, hit area
+- [ ] 7. Antes do fecho: listar o que ainda falta vs o design. Não esperar o
+        usuário perguntar “falta mais nada?”
+- [ ] 8. Sem essa comparação, a tela não está pronta — lint verde não conta
 ```
 
 ## Regras (verificáveis)
@@ -75,6 +82,20 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
    no arquivo que o Tailwind **varre** (`app/`, `components/`). Em
    pasta fora do `content` a classe não entra no CSS e o ícone some —
    tamanho 0. `shrink-0`. `currentColor` no `stroke`/`fill`.
+9. **Loading não finge tela pronta.** Marcador, rótulo ou thumb no vazio
+   enquanto o asset base ainda não pintou é bug. Skeleton (o da tela irmã)
+   até o `onLoad`/frame medido; overlay só depois disso.
+10. **Faixa que transborda rola, não encolhe.** Item mantém o tamanho do
+    design. Ação fixa (adicionar) permanece visível. Affordance de “tem
+    mais” (sombra/fade) só no eixo que transborda. Sem scroll no eixo
+    que não transborda. Desktop: chevron se o irmão tiver; mobile: o
+    gesto do irmão (ex. long-press), não inventar.
+11. **Controle novo não cobre controle existente.** Cada overlay tem
+    canto/slot próprio. Se o usuário aponta um canto, usar esse canto.
+    Área clicável = o botão visível, não um pixel do ícone.
+12. **Duas superfícies, o mesmo id.** Upload, exclusão e reorder têm que
+    atualizar **todas** as listas que mostram o item (tabela, faixa,
+    modal). Sumir de uma e ficar na outra é bug, não “estado derivado”.
 
 ## Anti-padrões
 
@@ -84,15 +105,21 @@ Layout a partir de Figma **não** é fix trivial. Não pular esta skill.
 - `fitView()` no botão de expandir
 - Declarar layout ok depois de ler o CSS, sem bater no print
 - Tratar pedido de Figma como “ajuste trivial” e pular medida
+- Canvas/card “pronto” com pontos ou labels no branco, thumbs vazias
+- Encolher item da faixa para caber tudo na viewport
+- Zoom/ação nova no mesmo canto das setas já existentes
+- Esperar o usuário perguntar “falta mais nada?” para conferir o Figma
 
 ## Evidência no fecho
 
 Citar: nós/medidas usados, componente irmão reutilizado, o que conferiu no
-print (alinhamento, divisor, tamanho, controles). Sem isso, a UI não passou.
+print (alinhamento, divisor, tamanho, controles, loading, overflow, hit
+area) e o que ainda falta vs o design. Sem isso, a UI não passou.
 
 ## Relação com outras skills
 
 - `orquestracao-agentes` — dispara esta skill quando a task tem UI/Figma
+- `arquitetura-solid` — “onde mora” o atributo (cadastro vs tela); overlay é aqui
 - `codigo-limpo` — higiene do código; fidelidade visual é aqui
 - `revisao-pos-implementacao` — no fecho de diff de UI, aplica estas regras
 - `performance-app` — dono de “tela lenta”
