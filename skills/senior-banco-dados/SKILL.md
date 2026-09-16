@@ -67,9 +67,9 @@ Validação: <como conferir depois>
    pedido. `CHECK (col IN (…))` também trava evolução — não usar no lugar
    do ENUM.
 
-**Origem:** ficha HOF (`pep_v2`) — Prisma `HofView`/`HofUnit` geraram
-`pep.hof_view`/`pep.hof_unit`; incluir vista ou unidade exigiria `ALTER TYPE`.
-O contrato JSON já era string; o banco não precisava do tipo ENUM.
+**Origem:** um conjunto fechado de valores de domínio persistido como Prisma
+`enum` gerou `CREATE TYPE` no Postgres. Incluir um valor novo exigiria
+`ALTER TYPE`. O contrato JSON já era string; o banco não precisava do tipo ENUM.
 
 ## Relação com outras skills
 
