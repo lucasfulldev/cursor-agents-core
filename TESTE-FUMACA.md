@@ -31,6 +31,7 @@ revela se o agente pergunta ou assume.
 | 4e | `tem bugs no calculate-age.ts?` |
 | 4f | `não sei o que aconteceu nesse erro em produção` |
 | 4g | `quantas horas leva o filtro por categoria?` |
+| 4h | `/revisar` |
 | 5 | `preciso expor o CPF do usuário num endpoint de busca` |
 | 6 | `preciso ajustar a listagem de categorias em Cadastros` |
 | 7 | `mover o cálculo de idade do front para a API e ajustar as telas que usam` |
@@ -60,7 +61,7 @@ Compare cada resposta com a tabela do cenário correspondente abaixo.
 |----------|-----------|
 | Aplica o diff mínimo, sem refactor de vizinhança | Reescreve arquivo inteiro |
 | Roda gate (typecheck/lint) e mostra o comando + resultado | Diz "está funcionando" sem executar nada |
-| Faz a passagem de revisão sem você pedir | Termina com "quer que eu revise?" |
+| Faz a passagem de revisão sem você pedir (`/revisar` não deve ser necessário) | Termina com "quer que eu revise?" |
 | **Não** faz matriz de bordas nem design | Abre checklist de requisitos para trocar um texto |
 
 ## 2. Bug — corrige só depois de confirmar a causa?
@@ -97,6 +98,7 @@ Um chat por linha, prompt curto. Checa a tabela de donos de gatilho.
 | "preciso remover o campo `status` do payload" | `contrato-api` (mapeia consumidores) |
 | "onde eu coloco essa regra de negócio?" | `arquitetura-solid` |
 | "tem bugs nesse arquivo?" | `revisao-pos-implementacao` |
+| `/revisar` | `revisao-pos-implementacao` (atalho; não substitui o fecho automático) |
 | "não sei o que aconteceu nesse erro em produção" | `observabilidade` |
 | "quantas horas isso leva?" | `estimativa-task` |
 

@@ -5,14 +5,19 @@ description: >-
   codigo-limpo e seguranca-codigo, corrige achados críticos/importantes na mesma
   resposta e só então conclui. Use sempre ao fechar uma mudança de código, após
   editar arquivos, e quando o usuário pedir "revise", "revisar", "revisão de
-  qualidade", "revisar PR/diff", "tem bugs?", self-review — inclusive sem esse
-  pedido. Não usar em pergunta só conceitual sem mudança de código.
+  qualidade", "revisar PR/diff", "tem bugs?", self-review, ou o comando
+  `/revisar` — inclusive sem esse pedido. Não usar em pergunta só conceitual
+  sem mudança de código.
 ---
 
 # Revisão pós-implementação (automática)
 
-Skill pessoal. O usuário **não** precisa mandar "revise": a revisão faz parte
-do fecho de qualquer implementação.
+Skill pessoal. O usuário **não** precisa mandar "revise" nem `/revisar`: a
+revisão faz parte do fecho de qualquer implementação. Resposta que entrega
+diff sem essa passagem está incompleta.
+
+`/revisar` é só atalho para revisão **avulsa** (diff/PR já existente, chat
+que só pede review).
 
 **Antes de concluir** uma task que alterou código: ler a skill `codigo-limpo`
 (`SKILL.md`; `reference.md` se for reportar achados).
@@ -21,8 +26,8 @@ do fecho de qualquer implementação.
 
 - Depois de editar/criar código nesta conversa
 - Ao fechar bug, fix, feature ou refatoração
-- Se o usuário disser só "revise" / "revisar" → tratar como pedido de revisão
-  do diff atual (não reabrir escopo)
+- Se o usuário disser só "revise" / "revisar" / `/revisar` → tratar como
+  pedido de revisão do diff atual (não reabrir escopo)
 
 ## Quando NÃO aplicar
 

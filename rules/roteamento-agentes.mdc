@@ -29,9 +29,10 @@ teste de caracterização antes de mover). Ordem sempre: preparação sem mudan�
 comportamento → comportamento → limpeza. Checkpoint com o usuário antes de
 migração de dados, contrato já consumido, remoção de código.
 
-Não pedir ao usuário para “revisar”. Não afirmar que funciona sem rodar o gate.
-Não adicionar comentários no código novo; se o trecho precisa de explicação,
-renomear ou extrair.
+Não pedir ao usuário para “revisar”. Fecho (`revisao-pos-implementacao`) na
+**mesma resposta** do diff — `/revisar` é só atalho avulso. Não afirmar que
+funciona sem rodar o gate. Não adicionar comentários no código novo; se o
+trecho precisa de explicação, renomear ou extrair.
 
 ## Transversais (por gatilho)
 

@@ -208,7 +208,8 @@ abrir diff de feature especulativa no mesmo turno.
 2. Um domínio (ou nenhum) por task; transversais podem somar.
 3. Calibrar ao tamanho: design e bordas são dispensáveis em ajuste trivial
    (label/texto); Figma/layout não é trivial. Gates e fecho, nunca.
-4. Não pedir “revise” ao usuário: o fecho é do agente.
+4. Não pedir “revise” ao usuário: o fecho é do agente, **na mesma resposta**
+   do diff. `/revisar` é atalho avulso; não substitui o fecho.
 5. Não afirmar que funciona sem evidência de execução.
 6. Achado crítico de segurança **bloqueia** o fecho.
 7. Regras duras do produto (branch, ID de task, changelog) ficam na skill do domínio.
@@ -219,7 +220,7 @@ abrir diff de feature especulativa no mesmo turno.
 ## Frases que disparam
 
 - Núcleo: feature, bug, implementa, arquitetura, SOLID, teste, “compila?”, revise,
-  Figma, layout, espaçamento, “não está igual”, “ajeite o load”, “onde colocar”,
+  `/revisar`, Figma, layout, espaçamento, “não está igual”, “ajeite o load”, “onde colocar”,
   “tela cinza”, “fica sem nada”
 - Transversal: permissão, LGPD, CPF, segredo, payload, DTO, contrato, commit, PR
 - Sob demanda: lento, N+1, log, monitoramento, stacktrace, horas, sizing
@@ -235,7 +236,7 @@ reivindicarem o mesmo gatilho, a escolha vira sorteio.
 | bug, erro, stacktrace, “não funciona” | `depuracao-evidencia` | Não é `observabilidade` (essa decide o que logar daqui pra frente) |
 | teste, borda, cobertura, TDD | `testes-e-bordas` | **Escreve** o caso; `gates-verificacao` **executa** a suíte |
 | compila?, roda?, suíte passou? | `gates-verificacao` | — |
-| revise, tem bugs?, self-review | `revisao-pos-implementacao` | `codigo-limpo` é o catálogo de critérios, não a passagem |
+| revise, `/revisar`, tem bugs?, self-review | `revisao-pos-implementacao` | `codigo-limpo` é o catálogo de critérios, não a passagem. Skill `revisar` só existe como atalho `/revisar` |
 | clean code, cheiro, nome ruim, função grande | `codigo-limpo` | — |
 | contrato **novo**, módulo novo, SOLID | `arquitetura-solid` | Alterar contrato **já consumido** é `contrato-api` |
 | desacoplar, “mexo aqui e quebra lá”, refactor estrutural | `arquitetura-solid` (seção de legado) | `codigo-limpo` é higiene do diff, não mudança de estrutura |

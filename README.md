@@ -13,6 +13,7 @@ mantém isso em repositório privado.
 ```
 skills/     → ~/.cursor/skills/
 rules/      → ~/.cursor/rules/
+commands/   → ~/.cursor/commands/   (/revisar)
 ```
 
 ## Núcleo — pipeline
@@ -27,7 +28,7 @@ rules/      → ~/.cursor/rules/
 | Implementação | `codigo-limpo` | Clean Code, diff mínimo |
 | UI / Figma | `fidelidade-ui` | Medida do design, reuso, loading, overflow, sem inventar asset |
 | Verificação | `gates-verificacao` | Typecheck/lint/test com evidência |
-| Fecho | `revisao-pos-implementacao` | Revisão automática do diff |
+| Fecho | `revisao-pos-implementacao` | Revisão automática do diff (`/revisar` = atalho avulso) |
 
 ## Transversais (por gatilho)
 
@@ -94,7 +95,7 @@ Sem mudança de código → sem gates e sem fecho.
 - Sem ENUM de banco: VARCHAR + validação na API (`senior-banco-dados`)
 - Segurança crítica bloqueia a entrega
 - Achado recorrente vira regra, não correção repetida
-- Diff mínimo em legado; revisão de fecho automática
+- Diff mínimo em legado; revisão de fecho automática (`/revisar` não substitui o fecho)
 - Um gatilho, um dono: description que disputa palavra com outra skill vira sorteio
 
 ## O que o núcleo já antecipa
@@ -141,8 +142,9 @@ rodam e se o fecho traz evidência.
 
 ```bash
 rsync -a ./skills/ ~/.cursor/skills/
-mkdir -p ~/.cursor/rules
+mkdir -p ~/.cursor/rules ~/.cursor/commands
 cp ./rules/*.mdc ~/.cursor/rules/
+cp ./commands/*.md ~/.cursor/commands/
 ```
 
 Source of truth com symlink (opcional):
@@ -150,8 +152,9 @@ Source of truth com symlink (opcional):
 ```bash
 mv ~/.cursor/skills ~/.cursor/skills.bak 2>/dev/null || true
 ln -s "$(pwd)/skills" ~/.cursor/skills
-mkdir -p ~/.cursor/rules
+mkdir -p ~/.cursor/rules ~/.cursor/commands
 ln -sf "$(pwd)/rules/roteamento-agentes.mdc" ~/.cursor/rules/roteamento-agentes.mdc
+ln -sf "$(pwd)/commands/revisar.md" ~/.cursor/commands/revisar.md
 ```
 
 Abra um **chat novo** no Cursor após sincronizar.
