@@ -6,9 +6,9 @@ description: >-
   valida as duas pontas. Use ao alterar payload, DTO, endpoint, query param já em
   uso, mudar ou remover campo,
   enum, resposta de erro, PATCH que apaga campo omitido, blob/object URL no
-  payload, ou quando o front não recebe/envia o campo esperado, integração
-  entre repos, versionamento. Não usar para mudança interna que não cruza
-  fronteira de serviço.
+  payload, “não tá salvando”, ou quando o front não recebe/envia o campo
+  esperado, integração entre repos, versionamento. Não usar para mudança
+  interna que não cruza fronteira de serviço.
 ---
 
 # Contrato de API
@@ -23,7 +23,7 @@ consumidores que ninguém lembrou de olhar.
 
 - Alterar DTO, response, request, query param, header, enum, status de erro
 - Campo novo que o front precisa consumir
-- “O front não está recebendo X” / “a API reclama do payload”
+- “O front não está recebendo X” / “a API reclama do payload” / “não tá salvando”
 - Integração nova entre dois repos
 
 ## Workflow

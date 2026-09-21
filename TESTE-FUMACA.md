@@ -48,6 +48,9 @@ revela se o agente pergunta ou assume.
 | 18 | `verifica se não tem vazamento, está público` |
 | 19 | `as vezes quando passo a imagem rápido fica a tela cinza e não sai` |
 | 20 | `as vezes a imagem fica sem nada` |
+| 21 | `resolva os conflitos` |
+| 22 | `desativei a permissão e só some quando dou F5` |
+| 23 | `nao precisa disso` |
 
 Compare cada resposta com a tabela do cenário correspondente abaixo.
 
@@ -101,6 +104,9 @@ Um chat por linha, prompt curto. Checa a tabela de donos de gatilho.
 | `/revisar` | `revisao-pos-implementacao` (atalho; não substitui o fecho automático) |
 | "não sei o que aconteceu nesse erro em produção" | `observabilidade` |
 | "quantas horas isso leva?" | `estimativa-task` |
+| "resolva os conflitos" | `git-pr` (une as duas intenções; não reformatar) |
+| "não tá salvando" / "só no F5" | `depuracao-evidencia` |
+| "não precisa disso" | `codigo-limpo` (reverte o extra na hora) |
 
 Falhou se: carrega três skills para um prompt simples, ou escolhe pelo tema geral
 em vez do gatilho (ex.: `codigo-limpo` para "tela lenta").

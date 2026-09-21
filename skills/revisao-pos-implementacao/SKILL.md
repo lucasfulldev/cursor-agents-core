@@ -108,4 +108,5 @@ Delegar detalhe ao `codigo-limpo`. Focar em:
 - `fidelidade-ui` — no fecho de tela, exige comparação com o design
 - `testes-e-bordas` — regressão quando o achado é bug
 - Pack de domínio do time — processo do produto; esta skill fecha a
-  qualidade do diff em qualquer projeto
+  qualidade do diff em qualquer projeto. Se o pack mandar changelog ou
+  roteiro de QA no fecho, criar **sem esperar pedido**.

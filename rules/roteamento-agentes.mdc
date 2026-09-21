@@ -39,7 +39,7 @@ trecho precisa de explicação, renomear ou extrair.
 - Authz, login, upload, PII/CPF, segredo → `seguranca-codigo` (crítico bloqueia o fecho)
 - Payload/DTO/enum cruzando serviço ou front↔API → `contrato-api`
 - Decisão com trade-off ou achado repetido → `memoria-decisoes`
-- Commit, PR, split → `git-pr`
+- Commit, PR, split, “resolva os conflitos” → `git-pr`
 
 ## Sob demanda
 

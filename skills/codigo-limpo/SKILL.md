@@ -53,6 +53,8 @@ um guia de Clean Code do time, se existir.
 4. **Confiar no servidor** — estado de persistência vem do banco/serviço, não de
    flags frágeis do client (`previousExists`, etc.).
 5. Responder em **português**.
+6. Usuário diz “não precisa” / “não era pra” / “extrapolei” → reverter o
+   extra na mesma resposta, sem defender o escopo a mais.
 
 ## Design (SOLID)
 

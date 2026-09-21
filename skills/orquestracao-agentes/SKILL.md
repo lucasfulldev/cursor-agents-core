@@ -124,7 +124,7 @@ Regras:
 | **Segurança** | `seguranca-codigo` | Authz, login, upload, PII/LGPD, segredo, entrada externa |
 | **Contrato de API** | `contrato-api` | Payload/DTO/enum/erro cruzando serviço ou front↔API |
 | **Memória** | `memoria-decisoes` | Decisão com trade-off; achado repetido 2ª vez |
-| **Git/PR** | `git-pr` | Commit, PR, split de mudança grande |
+| **Git/PR** | `git-pr` | Commit, PR, split, “resolva os conflitos” |
 
 ## Sob demanda
 
@@ -250,6 +250,11 @@ reivindicarem o mesmo gatilho, a escolha vira sorteio.
 | PATCH apagou campo que o cliente não mandou, omitido virou `null` | `contrato-api` | `undefined` pintado na UI é `fidelidade-ui` (mapa de label) |
 | “o que acha?”, “faz sentido?”, opinião sem “adiciona/faz/coloque” | `orquestracao-agentes` (pergunta) | “onde mora no cadastro?” continua `arquitetura-solid`; “coloque no canto X” é `fidelidade-ui` |
 | “subiu?”, push, URL do commit/PR | `git-pr` | — |
+| “resolva os conflitos”, merge com marcadores | `git-pr` | Não é refactor de `codigo-limpo` |
+| changelog / roteiro QA no tracker do time | pack de domínio | Não entra no núcleo público |
+| “não tá salvando”, “não tá pegando”, “só no F5” | `depuracao-evidencia` | PATCH omitido → `null` é `contrato-api` depois da causa |
+| “não precisa”, “não era pra”, “extrapolei” | `codigo-limpo` | Reverter o extra; não defender o escopo a mais |
+| “subi e não afetou” | pack de deploy do domínio | — |
 | vazamento, repo público, skill pack público | `seguranca-codigo` | Nome de produto no núcleo genérico é vazamento; rewrite de git é `git-pr` |
 | “tela cinza”, load que não sai, “troca rápido”, mídia/thumb vazia com o item ainda na lista | `depuracao-evidencia` | Implementar fade/faixa nova é `fidelidade-ui`; persistir `blob:` é `contrato-api` |
 | persistir `blob:` / object URL no payload | `contrato-api` | Recriar URL no front a partir do id é `fidelidade-ui` |

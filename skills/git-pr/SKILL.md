@@ -2,10 +2,11 @@
 name: git-pr
 description: >-
   Organiza a entrega em git: commits coesos com mensagem que explica o porquê,
-  PR com contexto e risco, e divisão de mudança grande em partes menores. Use
-  ao commitar, abrir PR, escrever mensagem de commit, dividir mudança, "subiu?",
-  ou quando o usuário mencionar branch, push, split de PR. Regras de
-  branch/changelog do produto ficam na skill de domínio.
+  PR com contexto e risco, divisão de mudança grande e resolução de conflito
+  de merge. Use ao commitar, abrir PR, escrever mensagem de commit, dividir
+  mudança, "subiu?", "resolva os conflitos", merge com marcadores, ou quando
+  o usuário mencionar branch, push, split de PR. Regras de branch/changelog
+  do produto ficam na skill de domínio.
 ---
 
 # Git e Pull Request
@@ -18,6 +19,7 @@ produto pertence à skill de domínio (ex.: branch base e changelog do time).
 - Commit, push, PR, rebase de mudança pronta
 - Mudança grande que ficou difícil de revisar
 - Mensagem de commit ou descrição de PR
+- Merge em andamento / “resolva os conflitos”
 
 ## Antes de commitar
 
@@ -67,6 +69,21 @@ feature, dezenas de arquivos, revisor precisando de contexto que não está no P
 
 Ordem preferida: preparação (renomear/extrair sem mudar comportamento) → mudança
 de comportamento → limpeza do que ficou órfão.
+
+## Conflito de merge
+
+Não esperar o usuário ensinar o protocolo. Com merge em andamento:
+
+```
+- [ ] 1. `git status` — só arquivos com marcadores
+- [ ] 2. Unir as duas intenções (o da feature + o que veio da base)
+- [ ] 3. Sem reformatar o arquivo nem “aproveitar” para limpar
+- [ ] 4. Não abortar o merge
+- [ ] 5. Gates nos arquivos tocados
+```
+
+Changelog no tracker do time, nome de branch com ID e base da branch do
+pack de domínio, não desta skill.
 
 ## Regras duras
 

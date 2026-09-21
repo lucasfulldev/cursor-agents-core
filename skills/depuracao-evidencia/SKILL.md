@@ -4,9 +4,10 @@ description: >-
   Investiga bug por evidência: reproduzir, formular hipótese, instrumentar,
   confirmar a causa e só então corrigir. É a porta de entrada de bug, erro,
   stacktrace, tela em branco, dado errado, comportamento inesperado, "não
-  funciona", "parou de funcionar", "não tá saindo da lista", duas listas do
-  mesmo item, "undefined" na tela, pontos que saltam ao expandir, tela cinza
-  que não sai, imagem/thumb vazia. O teste que trava a regressão vem de
+  funciona", "parou de funcionar", "não tá salvando", "não tá pegando",
+  "não tá saindo da lista", "só no F5", duas listas do mesmo item,
+  "undefined" na tela, pontos que saltam ao expandir, tela cinza que não
+  sai, imagem/thumb vazia. O teste que trava a regressão vem de
   testes-e-bordas. Não usar para implementar feature nova.
 ---
 
@@ -21,6 +22,7 @@ a causa estar **confirmada**.
 - Resultado errado na tela ou no dado
 - Regressão (“funcionava antes”)
 - Item some de uma lista e permanece em outra (tabela vs faixa vs modal)
+- “Não tá salvando”, “não tá pegando”, permissão/botão que só some no F5
 
 ## Quando NÃO aplicar
 
@@ -56,6 +58,8 @@ a causa estar **confirmada**.
 | UI mostra a palavra `undefined` | Mapa de tipo/status incompleto; contrato sem o valor ou front sem label |
 | Tela cinza / load que não sai ao trocar rápido | `onLoad` da URL abortada; overlay só some se a URL pronta for a atual |
 | Item na faixa/canvas sem mídia | URL de sessão revogada ainda no estado; merge do mesmo id não atualizou a URL |
+| “Não tá salvando” / gravou na tela e sumiu | Seguir form → request → DTO → persistência. Ordem: PATCH omitido virou `null`; JWT/roles só no F5; data ISO `T00:00:00Z` caiu no dia anterior |
+| Permissão/botão some só no F5 | Roles no contexto até `revalidate`; a API já nega — o furo é UI stale |
 
 ## Regras
 
