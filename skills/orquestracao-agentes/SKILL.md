@@ -125,6 +125,7 @@ Regras:
 | **Contrato de API** | `contrato-api` | Payload/DTO/enum/erro cruzando serviço ou front↔API |
 | **Memória** | `memoria-decisoes` | Decisão com trade-off; achado repetido 2ª vez |
 | **Git/PR** | `git-pr` | Commit, PR, split, “resolva os conflitos” |
+| **PR conflitante** | `pr-conflito-main` | PR já aberto que deu conflito com a `main` |
 
 ## Sob demanda
 
@@ -251,6 +252,7 @@ reivindicarem o mesmo gatilho, a escolha vira sorteio.
 | “o que acha?”, “faz sentido?”, opinião sem “adiciona/faz/coloque” | `orquestracao-agentes` (pergunta) | “onde mora no cadastro?” continua `arquitetura-solid`; “coloque no canto X” é `fidelidade-ui` |
 | “subiu?”, push, URL do commit/PR | `git-pr` | — |
 | “resolva os conflitos”, merge com marcadores | `git-pr` | Não é refactor de `codigo-limpo` |
+| PR deu conflito, conflito ao abrir o PR, branch `-resolve` | `pr-conflito-main` | Merge já em andamento com marcadores continua `git-pr`; sem rebase |
 | changelog / roteiro QA no tracker do time | pack de domínio | Não entra no núcleo público |
 | “não tá salvando”, “não tá pegando”, “só no F5” | `depuracao-evidencia` | PATCH omitido → `null` é `contrato-api` depois da causa |
 | “não precisa”, “não era pra”, “extrapolei” | `codigo-limpo` | Reverter o extra; não defender o escopo a mais |

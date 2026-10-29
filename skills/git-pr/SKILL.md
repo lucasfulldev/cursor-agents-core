@@ -72,6 +72,10 @@ de comportamento → limpeza do que ficou órfão.
 
 ## Conflito de merge
 
+PR **já aberto** que deu conflito com a `main` → skill `pr-conflito-main`
+(branch `-resolve`, sem rebase). Esta seção vale para o merge que já está
+em andamento:
+
 Não esperar o usuário ensinar o protocolo. Com merge em andamento:
 
 ```

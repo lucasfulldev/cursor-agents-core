@@ -105,6 +105,7 @@ Um chat por linha, prompt curto. Checa a tabela de donos de gatilho.
 | "não sei o que aconteceu nesse erro em produção" | `observabilidade` |
 | "quantas horas isso leva?" | `estimativa-task` |
 | "resolva os conflitos" | `git-pr` (une as duas intenções; não reformatar) |
+| "o PR deu conflito com a main" | `pr-conflito-main` (branch `-resolve`; sem rebase) |
 | "não tá salvando" / "só no F5" | `depuracao-evidencia` |
 | "não precisa disso" | `codigo-limpo` (reverte o extra na hora) |
 

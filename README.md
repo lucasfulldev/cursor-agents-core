@@ -37,7 +37,8 @@ commands/   → ~/.cursor/commands/   (/revisar)
 | Segurança | `seguranca-codigo` | Authz, PII/LGPD, segredo, upload |
 | Contrato de API | `contrato-api` | Payload/DTO cruzando serviço ou front↔API |
 | Memória | `memoria-decisoes` | Decisão com trade-off; achado recorrente |
-| Git/PR | `git-pr` | Commit, PR, split |
+| Git/PR | `git-pr` | Commit, PR, split, merge em andamento |
+| PR conflitante | `pr-conflito-main` | PR já aberto que deu conflito com a `main` |
 
 ## Sob demanda
 
@@ -125,6 +126,7 @@ Pergunta repetida em task longa vira regra. Inventário (não é dica):
 | Erro da skill → patch da skill na mesma conversa | `orquestracao-agentes` |
 | Push cita URL; repo público sem nome de produto/secret | `git-pr` + `seguranca-codigo` |
 | “Resolva os conflitos”: unir as duas intenções, sem reformatar | `git-pr` |
+| PR já aberto deu conflito com a `main`: branch `-resolve`, sem rebase | `pr-conflito-main` |
 | “Não tá salvando” / some só no F5: seguir form → API → persistência | `depuracao-evidencia` |
 | “Não precisa” / “não era pra”: reverter o extra na hora | `codigo-limpo` |
 
