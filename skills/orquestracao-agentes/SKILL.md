@@ -134,7 +134,8 @@ Regras:
 | **Depurador** | `depuracao-evidencia` | Bug, erro, stacktrace, regressão |
 | **Performance** | `performance-app` | Lento, timeout, N+1, bundle, re-render |
 | **Observabilidade** | `observabilidade` | Log, erro em produção, correlação, alerta |
-| **Estimador** | `estimativa-task` | Sizing, horas, esforço |
+| **Estimador** | `estimativa-task` | Sizing do time, horas humanas |
+| **Estimador do agente** | `estimativa-agente` | Horas do agente e esforço em UST |
 
 ## Domínios (plugins)
 
@@ -224,7 +225,7 @@ abrir diff de feature especulativa no mesmo turno.
   `/revisar`, Figma, layout, espaçamento, “não está igual”, “ajeite o load”, “onde colocar”,
   “tela cinza”, “fica sem nada”
 - Transversal: permissão, LGPD, CPF, segredo, payload, DTO, contrato, commit, PR
-- Sob demanda: lento, N+1, log, monitoramento, stacktrace, horas, sizing
+- Sob demanda: lento, N+1, log, monitoramento, stacktrace, horas do time, sizing, “quanto você leva”, esforço em UST
 - Domínio: nomes do produto/repo do pack instalado, SQL, deploy
 
 ## Donos de gatilho (desambiguação)
@@ -261,6 +262,7 @@ reivindicarem o mesmo gatilho, a escolha vira sorteio.
 | “tela cinza”, load que não sai, “troca rápido”, mídia/thumb vazia com o item ainda na lista | `depuracao-evidencia` | Implementar fade/faixa nova é `fidelidade-ui`; persistir `blob:` é `contrato-api` |
 | persistir `blob:` / object URL no payload | `contrato-api` | Recriar URL no front a partir do id é `fidelidade-ui` |
 | CREATE TYPE, Prisma `enum` no schema, tipo SQL novo | `senior-banco-dados` | Union TS / `@IsIn` não é enum de banco |
+| “você que vai fazer”, “quanto você leva”, esforço em UST do agente | `estimativa-agente` | “quantas horas isso leva?” e sizing do time são `estimativa-task`; 1 UST não é 1 h |
 
 Ao criar skill nova: se a description repetir gatilho de outra, qualificar
 (“contrato **já consumido**”) ou delegar explicitamente (“quem faz X é Y”).

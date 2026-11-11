@@ -42,7 +42,7 @@ commands/   → ~/.cursor/commands/   (/revisar)
 
 ## Sob demanda
 
-`depuracao-evidencia` (bug) · `performance-app` (lentidão) · `observabilidade` (log/incidente) · `estimativa-task` (horas)
+`depuracao-evidencia` (bug) · `performance-app` (lentidão) · `observabilidade` (log/incidente) · `estimativa-task` (horas do time) · `estimativa-agente` (horas do agente e esforço em UST)
 
 ## Domínios instalados neste repo
 

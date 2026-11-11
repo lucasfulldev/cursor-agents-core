@@ -45,7 +45,8 @@ trecho precisa de explicação, renomear ou extrair.
 
 - Lento, N+1, bundle, re-render → `performance-app`
 - Log, erro em produção, correlação → `observabilidade`
-- Horas, sizing → `estimativa-task`
+- Horas, sizing do time → `estimativa-task`
+- Horas que o agente leva e esforço em UST da task → `estimativa-agente`
 
 ## Domínios
 
