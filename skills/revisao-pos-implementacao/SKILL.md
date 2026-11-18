@@ -1,112 +1,115 @@
 ---
 name: revisao-pos-implementacao
 description: >-
-  Dona de toda revisão de código: passa no diff aplicando os critérios de
-  codigo-limpo e seguranca-codigo, corrige achados críticos/importantes na mesma
-  resposta e só então conclui. Use sempre ao fechar uma mudança de código, após
-  editar arquivos, e quando o usuário pedir "revise", "revisar", "revisão de
-  qualidade", "revisar PR/diff", "tem bugs?", self-review, ou o comando
-  `/revisar` — inclusive sem esse pedido. Não usar em pergunta só conceitual
-  sem mudança de código.
+  Dona de toda revisão de código: passa no diff da task procurando só defeito
+  que quebra comportamento, contrato, dado ou segurança, corrige na mesma
+  resposta e conclui. Use ao fechar mudança de código e quando o usuário pedir
+  "revise", "revisar", "revisão de qualidade", "revisar PR/diff", "tem bugs?",
+  self-review, ou o comando `/revisar`. Não usar em pergunta conceitual sem
+  mudança de código.
 ---
 
-# Revisão pós-implementação (automática)
+# Revisão pós-implementação
 
-Skill pessoal. O usuário **não** precisa mandar "revise" nem `/revisar`: a
-revisão faz parte do fecho de qualquer implementação. Resposta que entrega
-diff sem essa passagem está incompleta.
+Fecho automático de qualquer mudança de código. Objetivo: achar **defeito real**,
+não opinar sobre estilo. Zero achados é veredito válido.
 
-`/revisar` é só atalho para revisão **avulsa** (diff/PR já existente, chat
-que só pede review).
+## 1. Escopo
 
-**Antes de concluir** uma task que alterou código: ler a skill `codigo-limpo`
-(`SKILL.md`; `reference.md` se for reportar achados).
+- Alvo = arquivos alterados **nesta task**: diff contra a base da feature
+  (ex.: `origin/release`) mais os não rastreados que a task criou.
+- Trabalho anterior na mesma branch, de outra task ou de commit antigo não entra,
+  a menos que o usuário diga "branch", "PR" ou "tudo".
+- O veredito começa com o escopo: arquivos tocados, em uma linha.
 
-## Quando aplicar
+## 2. O que é achado
 
-- Depois de editar/criar código nesta conversa
-- Ao fechar bug, fix, feature ou refatoração
-- Se o usuário disser só "revise" / "revisar" / `/revisar` → tratar como
-  pedido de revisão do diff atual (não reabrir escopo)
+Entra como achado só se cumprir os dois itens:
 
-## Quando NÃO aplicar
+1. **Caminho de execução concreto**: entrada ou estado → passo → resultado errado.
+   Escrever em uma frase. Sem caminho, não é achado.
+2. **Categoria de defeito**: crash ou `null` com entrada válida; resultado visível
+   errado num caminho que a UI ou a API oferece; campo enviado e ignorado; opção
+   oferecida e não honrada; dado persistido errado; vazamento, IDOR ou PII; regra
+   de negócio violada; regra nova sem teste num módulo que já tem suíte.
 
-- Resposta só conceitual / explicação, sem diff
-- Commit, PR, deploy ou pergunta operacional sem mudança de código
-- Loop: já rodou a revisão nesta resposta e não restou crítico/importante
+Não é achado, e não entra no veredito: nome, tamanho de função, SRP, DRY,
+"poderia extrair", early return, estilo, comentário, ordem de import, código
+vizinho não tocado, comportamento antigo fora do diff.
 
-## Workflow obrigatório (uma passagem)
+Antes de reportar, confirme no código: DTO, validador, caller ou guard que já
+protege o caminho derruba o achado. Se a proteção existe, não é defeito.
+
+## 3. Passagem única com checklist fixo
+
+Rodar as mesmas dimensões, na mesma ordem, em cada arquivo do escopo. Cada
+dimensão termina em "ok" ou em achado com caminho.
+
+| # | Dimensão | Pergunta |
+|---|----------|----------|
+| 1 | Entradas | Opcional `undefined`, `null` ou vazio tratado? Valor fora da allowlist? |
+| 2 | Ponta a ponta | Todo campo enviado é aceito **e usado**? Toda opção que a UI oferece é honrada pelo backend? |
+| 3 | Estado derivado | Effect ou memo sincroniza? Valor inválido após troca de contexto é resetado? |
+| 4 | Persistência | Update parcial não apaga o que foi omitido? Estado vem do banco, não de flag do cliente? |
+| 5 | Autorização | Recurso filtrado pelo contrato ou tenant do usuário? Dado pessoal fora de log e de URL? |
+| 6 | Erros | `find*` que retorna `null` é tratado? Catch não engole falha parcial? |
+| 7 | Testes | Regra nova tem teste, quando o módulo já tem suíte? |
+| 8 | Sobras | `console.log`, debug, código morto, comentário novo, `as any` novo? |
+
+A dimensão 2 pega a maioria dos defeitos de filtro, payload e enum: a UI oferece
+a opção e o backend ignora. Não pule.
+
+## 4. Gates
+
+Rodar os gates que o projeto tem (typecheck, lint dos arquivos tocados, teste do
+módulo). Citar comando e resultado. Erro pré-existente em arquivo não tocado não
+é achado; só entra se a task causou a falha.
+
+## 5. Corrigir e concluir
+
+- Crítico e importante: corrigir nesta resposta, com diff mínimo e teste de
+  regressão quando o módulo tem suíte.
+- Depois da correção, rechecar só o que mudou. Não refazer o checklist inteiro.
+- Veredito:
 
 ```
-- [ ] 1. Listar arquivos tocados nesta task (git diff / edits da conversa)
-- [ ] 2. Revisar só o diff + vizinhança imediata (diff mínimo)
-- [ ] 3. Classificar: crítico → importante → sugestão → opcional
-- [ ] 4. Corrigir crítico e importante agora (mesma resposta)
-- [ ] 5. Sugestão/opcional: só se for boy scout barato no trecho tocado
-- [ ] 6. Revalidar checklist do codigo-limpo nos arquivos alterados
-- [ ] 7. Rodar `gates-verificacao` e anexar a evidência ao veredito
-- [ ] 8. Concluir com veredito curto em português
+Revisado: <N> arquivos (<lista curta>).
+Achados: <nenhum> | <lista de críticos e importantes, já corrigidos>.
+Gates: <comando → ok | falha>. Não verificado: <o que não deu para rodar, ou "nada">.
 ```
 
-## Evidência obrigatória
+## 6. Repetição e parada
 
-O veredito cita o que **foi executado** (typecheck, testes, lint) e o que não
-existia no projeto. Sem gate disponível, dizer que a verificação foi só por
-leitura — nunca afirmar "funciona" sem execução.
+- Uma passagem por resposta. Não fazer segunda busca "para garantir".
+- Se o usuário pede "revise" de novo e o diff não mudou desde a última revisão
+  desta conversa: repetir o veredito anterior. Não procurar de novo.
+- Se o diff mudou: revisar só o delta, mais as dimensões 2 e 3 nos arquivos que o
+  delta afeta.
+- Nunca completar uma cota de achados. Zero achados é o veredito certo quando não
+  há defeito.
+- Não perguntar "quer que eu revise?" nem pedir ao usuário para revisar.
 
-## Regras anti-loop
+## 7. Sugestões só sob pedido
 
-1. **No máximo uma** passagem revisão → correção → rechecagem por resposta.
-2. Se após a correção ainda houver crítico: corrigir de novo **só** o crítico;
-   não reescrever o que já está ok.
-3. Não pedir ao usuário “revise de novo”. Se aprovado, diga que está pronto.
-4. Não expandir escopo (“já que estamos aqui…”) fora do trecho da task.
+Sugestão de refatoração, nome, estilo ou clareza só aparece se o usuário pedir
+explicitamente ("sugestões", "nits", "refatora", "deixa mais limpo"). Nesse caso,
+listar em bloco separado, depois do veredito, sem misturar com defeito.
 
-## Formato do fecho
+Se a mudança só fica correta com refatoração, o problema já é defeito com caminho
+de execução e entra como achado.
 
-Curto. Exemplos:
+## Gatilhos que elevam para importante
 
-- `Pronto. Revisado: sem críticos; X corrigido (borda null). Typecheck e 3 testes ok.`
-- `Pronto. Revisado: aprovado no diff tocado. Testes 12/12; lint não configurado.`
-
-Se a task for só revisão pedida pelo usuário, usar o formato de
-`codigo-limpo` / `reference.md` (crítico → importante → sugestão → opcional).
-
-## Critérios (resumo)
-
-Delegar detalhe ao `codigo-limpo`. Focar em:
-
-- Comportamento correto no caso pedido + bordas null/vazio/inválido
-- Sentinel ruim (`"0"`, `""` mágico) vs `null`/label explícito
-- Duplicação introduzida agora; nomes; SRP no trecho novo
-- Comentário novo no diff → remover (nome/estrutura no lugar)
-- Diff mínimo; sem debug; testes de regressão se o caminho já tiver suíte
-- Tocou permissão, dado pessoal ou segredo? → `seguranca-codigo`
-  (achado crítico de segurança **bloqueia** o fecho)
-- Diff de UI (Figma, layout, tabela, espaçamento, empty state)? →
-  `fidelidade-ui`. Asset inventado, SVG sem width/height, componente irmão
-  ignorado, controle do design ausente, loading que finge tela pronta,
-  faixa que encolhe, controle novo em cima de outro, `undefined` na tela,
-  chrome por baixo da mídia, upload sem focar o item, overlay que salta
-  no expandir, troca rápida que deixa tela cinza, thumb vazia com URL
-  revogada = **importante** (corrigir agora). Fecho de UI lista o que
-  ainda falta vs o design — não esperar “falta mais nada?”
-- Duas superfícies do mesmo id (tabela vs faixa) dessincronizadas após
-  upload/exclusão = **importante** (`depuracao-evidencia` + correção agora)
-- Mudou payload que outro serviço/front consome? → `contrato-api`.
-  PATCH que transforma omitido em `null` = **importante**.
-  Persistiu `blob:` / object URL = **importante**
-- Diff de schema/migration? → `senior-banco-dados`. `CREATE TYPE … AS ENUM`
-  ou Prisma `enum` novo = **importante** (VARCHAR + validação na API agora)
-- Achado igual ao de uma revisão anterior? → `memoria-decisoes` (virar regra)
+- Permissão, login, upload, PII, segredo: `seguranca-codigo`. Falha crítica bloqueia o fecho.
+- Payload consumido por outro serviço ou pelo front: `contrato-api`. PATCH que transforma campo omitido em `null` é importante.
+- Tela com Figma ou print: `fidelidade-ui`. Loading que finge tela pronta, `undefined` na tela, thumb vazia e duas superfícies do mesmo id dessincronizadas são importantes.
+- Schema ou migration: `CREATE TYPE ... AS ENUM` ou Prisma `enum` é importante (VARCHAR com validação na API).
+- Achado igual ao de uma revisão anterior: `memoria-decisoes`, para virar regra.
 
 ## Relação com outras skills
 
-- `orquestracao-agentes` — mapa núcleo + domínios
-- `codigo-limpo` — critérios e checklist (ler ao aplicar esta skill)
-- `gates-verificacao` — evidência executável exigida no fecho
-- `fidelidade-ui` — no fecho de tela, exige comparação com o design
-- `testes-e-bordas` — regressão quando o achado é bug
-- Pack de domínio do time — processo do produto; esta skill fecha a
-  qualidade do diff em qualquer projeto. Se o pack mandar changelog ou
-  roteiro de QA no fecho, criar **sem esperar pedido**.
+- `codigo-limpo`: critério de escrita. Esta revisão não usa a checklist de estilo dele.
+- `gates-verificacao`: execução e evidência do fecho.
+- `testes-e-bordas`: regressão quando o achado é bug.
+- `fidelidade-ui`: no fecho de tela, comparação com o design.
+- Pack de domínio do time: processo do produto. Esta skill cuida da qualidade do diff.
