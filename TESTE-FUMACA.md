@@ -279,6 +279,22 @@ bolinhas está diferente”.
 
 ---
 
+## 21. Revisão sem achado — para sem inventar defeito
+
+**Prompt:** `revise` num chat em que a última mudança é um rename de constante
+ou um texto de label já validado (sem defeito real).
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Escopo declarado em uma linha (arquivos da task) | Revisa a branch inteira sem pedido |
+| Veredito "Achados: nenhum" com gates citados | Lista sugestão de nome ou estilo |
+| Não pergunta "quer que eu revise?" | Termina pedindo nova revisão |
+
+**Repetição:** pedir `revise` de novo sem mudança no diff. Falhou se a resposta
+faz nova busca e acha coisa diferente.
+
+---
+
 ## Registro
 
 | # | Cenário | Passou | Observação |
@@ -303,6 +319,7 @@ bolinhas está diferente”.
 | 18 | Repo público sem vazamento | | |
 | 19 | Troca rápida de mídia / tela cinza | | |
 | 20 | Mídia vazia, URL de sessão | | |
+| 21 | Revisão sem achado / repetição | | |
 
 **Quando um cenário falha:** o problema quase sempre está na `description` da
 skill (gatilho ausente, vago ou disputado), não no corpo dela. Corrija a
