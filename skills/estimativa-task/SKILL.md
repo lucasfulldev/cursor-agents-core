@@ -24,6 +24,7 @@ Skill pessoal. Devolve estimativa **pronta para colar** no chat ou no tracker.
 - Cronometragem de tempo já gasto (time tracking)
 - Compromisso comercial sem revisão humana
 - Estimativa de terceiros sem dados de escopo
+- Executor é o agente (“você que vai fazer”, “quanto você leva”) → `estimativa-agente`
 
 ## Premissas fixas
 

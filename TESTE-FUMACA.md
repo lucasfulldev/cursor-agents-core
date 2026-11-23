@@ -104,6 +104,7 @@ Um chat por linha, prompt curto. Checa a tabela de donos de gatilho.
 | `/revisar` | `revisao-pos-implementacao` (atalho; não substitui o fecho automático) |
 | "não sei o que aconteceu nesse erro em produção" | `observabilidade` |
 | "quantas horas isso leva?" | `estimativa-task` |
+| "quanto você leva para fazer isso?" | `estimativa-agente` (horas do agente e UST; não converte uma na outra) |
 | "resolva os conflitos" | `git-pr` (une as duas intenções; não reformatar) |
 | "o PR deu conflito com a main" | `pr-conflito-main` (branch `-resolve`; sem rebase) |
 | "não tá salvando" / "só no F5" | `depuracao-evidencia` |
