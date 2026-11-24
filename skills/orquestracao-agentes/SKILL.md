@@ -214,7 +214,7 @@ abrir diff de feature especulativa no mesmo turno.
    do diff. `/revisar` é atalho avulso; não substitui o fecho.
 5. Não afirmar que funciona sem evidência de execução.
 6. Achado crítico de segurança **bloqueia** o fecho.
-7. Regras duras do produto (branch, ID de task, changelog) ficam na skill do domínio.
+7. Regras duras do produto (branch, ID de task, changelog, roteiro de teste manual) ficam na skill do domínio. O roteiro é para quem usa a tela e não lê código: caminho do menu, nomes que aparecem e como reconhecer o resultado na própria tela. Ficam de fora endpoint, parâmetro, SQL, branch, nome de componente e pedido para abrir o Network.
 8. Opinião de UX sem verbo de ação = resposta, não código.
 9. Usuário aponta erro da skill (ENUM, asset inventado, ícone) → patch do
    skill dono **nesta conversa**; não deixar só o código do produto.
@@ -254,7 +254,7 @@ reivindicarem o mesmo gatilho, a escolha vira sorteio.
 | “subiu?”, push, URL do commit/PR | `git-pr` | — |
 | “resolva os conflitos”, merge com marcadores | `git-pr` | Não é refactor de `codigo-limpo` |
 | PR deu conflito, conflito ao abrir o PR, branch `-resolve` | `pr-conflito-main` | Merge já em andamento com marcadores continua `git-pr`; sem rebase |
-| changelog / roteiro QA no tracker do time | pack de domínio | Não entra no núcleo público |
+| changelog / roteiro de teste manual no tracker do time | pack de domínio | Não entra no núcleo público. O roteiro usa a tela; sem endpoint, SQL nem Network |
 | “não tá salvando”, “não tá pegando”, “só no F5” | `depuracao-evidencia` | PATCH omitido → `null` é `contrato-api` depois da causa |
 | “não precisa”, “não era pra”, “extrapolei” | `codigo-limpo` | Reverter o extra; não defender o escopo a mais |
 | “subi e não afetou” | pack de deploy do domínio | — |

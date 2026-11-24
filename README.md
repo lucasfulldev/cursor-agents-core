@@ -127,6 +127,7 @@ Pergunta repetida em task longa vira regra. Inventário (não é dica):
 | Push cita URL; repo público sem nome de produto/secret | `git-pr` + `seguranca-codigo` |
 | “Resolva os conflitos”: unir as duas intenções, sem reformatar | `git-pr` |
 | PR já aberto deu conflito com a `main`: branch `-resolve`, sem rebase | `pr-conflito-main` |
+| Roteiro de teste manual para quem usa a tela, sem endpoint nem SQL | `orquestracao-agentes` (regra 7; o texto mora no pack de domínio) |
 | “Não tá salvando” / some só no F5: seguir form → API → persistência | `depuracao-evidencia` |
 | “Não precisa” / “não era pra”: reverter o extra na hora | `codigo-limpo` |
 
