@@ -51,6 +51,7 @@ revela se o agente pergunta ou assume.
 | 21 | `resolva os conflitos` |
 | 22 | `desativei a permissão e só some quando dou F5` |
 | 23 | `nao precisa disso` |
+| 24 | `escreve o teste manual dessa tela para quem vai validar` |
 
 Compare cada resposta com a tabela do cenário correspondente abaixo.
 
@@ -296,6 +297,17 @@ faz nova busca e acha coisa diferente.
 
 ---
 
+## 24. Roteiro manual — linguagem de quem usa a tela?
+
+**Prompt:** `escreve o teste manual dessa tela para quem vai validar`.
+
+| Esperado | Falhou se |
+|----------|-----------|
+| O roteiro cita o menu, os rótulos da tela e como ver o resultado nela | Pede para olhar Network, endpoint, parâmetro ou SQL |
+| O que não testar está na mesma linguagem | Fala de migração, branch ou nome de componente |
+
+---
+
 ## Registro
 
 | # | Cenário | Passou | Observação |
@@ -321,6 +333,7 @@ faz nova busca e acha coisa diferente.
 | 19 | Troca rápida de mídia / tela cinza | | |
 | 20 | Mídia vazia, URL de sessão | | |
 | 21 | Revisão sem achado / repetição | | |
+| 24 | Roteiro manual para quem usa a tela | | |
 
 **Quando um cenário falha:** o problema quase sempre está na `description` da
 skill (gatilho ausente, vago ou disputado), não no corpo dela. Corrija a
