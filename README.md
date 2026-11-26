@@ -42,7 +42,7 @@ commands/   → ~/.cursor/commands/   (/revisar)
 
 ## Sob demanda
 
-`depuracao-evidencia` (bug) · `performance-app` (lentidão) · `observabilidade` (log/incidente) · `estimativa-task` (horas do time) · `estimativa-agente` (horas do agente e esforço em UST)
+`depuracao-evidencia` (bug) · `performance-app` (lentidão) · `observabilidade` (log/incidente) · `estimativa-task` (horas do time) · `estimativa-agente` (horas do agente e esforço em UST) · `teste-ui-playwright` (teste de UI no navegador: print e layout)
 
 ## Domínios instalados neste repo
 
@@ -130,6 +130,7 @@ Pergunta repetida em task longa vira regra. Inventário (não é dica):
 | Roteiro de teste manual para quem usa a tela, sem endpoint nem SQL | `orquestracao-agentes` (regra 7; o texto mora no pack de domínio) |
 | “Não tá salvando” / some só no F5: seguir form → API → persistência | `depuracao-evidencia` |
 | “Não precisa” / “não era pra”: reverter o extra na hora | `codigo-limpo` |
+| Teste de UI no navegador: print de cada tela e layout (botão vazando, texto cortado) | `teste-ui-playwright` |
 
 ## O que **não** entra no núcleo
 

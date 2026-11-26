@@ -52,6 +52,7 @@ revela se o agente pergunta ou assume.
 | 22 | `desativei a permissão e só some quando dou F5` |
 | 23 | `nao precisa disso` |
 | 24 | `escreve o teste manual dessa tela para quem vai validar` |
+| 25 | `testa essa tela no navegador com Playwright e confere se o diálogo vazou` |
 
 Compare cada resposta com a tabela do cenário correspondente abaixo.
 
@@ -110,6 +111,7 @@ Um chat por linha, prompt curto. Checa a tabela de donos de gatilho.
 | "o PR deu conflito com a main" | `pr-conflito-main` (branch `-resolve`; sem rebase) |
 | "não tá salvando" / "só no F5" | `depuracao-evidencia` |
 | "não precisa disso" | `codigo-limpo` (reverte o extra na hora) |
+| "testa a UI no Playwright e confere se o diálogo vazou" | `teste-ui-playwright` (print de cada tela e layout; não é `testes-e-bordas`) |
 
 Falhou se: carrega três skills para um prompt simples, ou escolhe pelo tema geral
 em vez do gatilho (ex.: `codigo-limpo` para "tela lenta").
@@ -308,6 +310,21 @@ faz nova busca e acha coisa diferente.
 
 ---
 
+## 25. Teste de UI — print e layout, não só o clique?
+
+**Prompt:** `testa essa tela no navegador com Playwright e confere se o diálogo vazou`.
+
+| Esperado | Falhou se |
+|----------|-----------|
+| Carrega `teste-ui-playwright`; abre o navegador pelo Playwright MCP | Usa CDP ou outro browser no lugar do MCP |
+| Tira print de cada tela e do diálogo, com a borda do card visível | Só clica e declara o fluxo verde |
+| Olha botão vazando, texto cortado, diálogo estreito e overflow | Encerra porque o botão recebeu o clique |
+| Não grava senha no relatório nem no print | Cola credencial ou fotografa o campo de senha |
+
+A palavra “teste” sem navegador continua em `testes-e-bordas`. Implementar o layout continua em `fidelidade-ui`.
+
+---
+
 ## Registro
 
 | # | Cenário | Passou | Observação |
@@ -334,6 +351,7 @@ faz nova busca e acha coisa diferente.
 | 20 | Mídia vazia, URL de sessão | | |
 | 21 | Revisão sem achado / repetição | | |
 | 24 | Roteiro manual para quem usa a tela | | |
+| 25 | Teste de UI: print e layout | | |
 
 **Quando um cenário falha:** o problema quase sempre está na `description` da
 skill (gatilho ausente, vago ou disputado), não no corpo dela. Corrija a
