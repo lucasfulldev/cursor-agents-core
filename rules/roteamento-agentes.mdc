@@ -47,6 +47,7 @@ trecho precisa de explicação, renomear ou extrair.
 - Log, erro em produção, correlação → `observabilidade`
 - Horas, sizing do time → `estimativa-task`
 - Horas que o agente leva e esforço em UST da task → `estimativa-agente`
+- Teste de UI no navegador, Playwright MCP, print da tela, botão vazando → `teste-ui-playwright`
 
 ## Domínios
 

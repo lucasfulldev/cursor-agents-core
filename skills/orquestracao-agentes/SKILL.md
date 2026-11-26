@@ -28,7 +28,7 @@ gatilhos e, se o tema casar com um pack de domínio, ler essa skill.
 │  Segurança · Contrato de API · Memória de decisões · Git/PR  │
 ├──────────────────────────────────────────────────────────────┤
 │  SOB DEMANDA — Depuração · Performance · Observabilidade      │
-│               Estimativa                                      │
+│               Estimativa · Teste de UI                       │
 ├──────────────────────────────────────────────────────────────┤
 │  DOMÍNIOS (plugins) — só o que o time instalar                │
 └──────────────────────────────────────────────────────────────┘
@@ -136,6 +136,7 @@ Regras:
 | **Observabilidade** | `observabilidade` | Log, erro em produção, correlação, alerta |
 | **Estimador** | `estimativa-task` | Sizing do time, horas humanas |
 | **Estimador do agente** | `estimativa-agente` | Horas do agente e esforço em UST |
+| **Teste de UI** | `teste-ui-playwright` | Playwright MCP no Mac: print de cada tela e layout (botão vazando, texto cortado, diálogo estreito, overflow) |
 
 ## Domínios (plugins)
 
@@ -225,7 +226,7 @@ abrir diff de feature especulativa no mesmo turno.
   `/revisar`, Figma, layout, espaçamento, “não está igual”, “ajeite o load”, “onde colocar”,
   “tela cinza”, “fica sem nada”
 - Transversal: permissão, LGPD, CPF, segredo, payload, DTO, contrato, commit, PR
-- Sob demanda: lento, N+1, log, monitoramento, stacktrace, horas do time, sizing, “quanto você leva”, esforço em UST
+- Sob demanda: lento, N+1, log, monitoramento, stacktrace, horas do time, sizing, “quanto você leva”, esforço em UST, Playwright, print da tela, botão vazando
 - Domínio: nomes do produto/repo do pack instalado, SQL, deploy
 
 ## Donos de gatilho (desambiguação)
@@ -263,6 +264,7 @@ reivindicarem o mesmo gatilho, a escolha vira sorteio.
 | persistir `blob:` / object URL no payload | `contrato-api` | Recriar URL no front a partir do id é `fidelidade-ui` |
 | CREATE TYPE, Prisma `enum` no schema, tipo SQL novo | `senior-banco-dados` | Union TS / `@IsIn` não é enum de banco |
 | “você que vai fazer”, “quanto você leva”, esforço em UST do agente | `estimativa-agente` | “quantas horas isso leva?” e sizing do time são `estimativa-task`; 1 UST não é 1 h |
+| Playwright, print da tela, botão vazando, diálogo estreito, overflow no teste de UI | `teste-ui-playwright` | A palavra “teste” sozinha continua `testes-e-bordas` (escreve o caso). Suíte do repo é `gates-verificacao`. Implementar o layout é `fidelidade-ui`. CDP não substitui o Playwright MCP |
 
 Ao criar skill nova: se a description repetir gatilho de outra, qualificar
 (“contrato **já consumido**”) ou delegar explicitamente (“quem faz X é Y”).
